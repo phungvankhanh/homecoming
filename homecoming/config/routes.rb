@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  get 'review/index'
+  get 'review/show'
+  get 'review/edit'
+  get 'review/create'
+  get 'review/update'
+  get 'review/delete'
+  get 'review/destroy'
+  get 'static_pages/home'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'destinations#index'
+  root 'static_pages#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
