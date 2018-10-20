@@ -1,0 +1,35 @@
+<div class="well well-sm" id="filterrific_results">
+        <strong>Category Title</strong>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+    <div id="products" class="row list-group">
+    <% destinations.each do |destination|%>
+        <div class="item ">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        <%= destination.name%></h4>
+                    <p class="group inner list-group-item-text">
+                        <%= destination.speciality%> </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                </p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="/destinations/<%=destination.id%>">See More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%end%>
+        <div><%= will_paginate @destinations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer%> </div>
+
+    </div>
+</div>
