@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'profile', to: 'user#show'
 
-  resources :destinations
+  resources :destinations do
+    resources :reviews
+  end
   resources :users
-  resources :reviews
 end

@@ -11,7 +11,7 @@
     </span>
 </h2>
 
-<%= form_for [@review.destination, @review] do |f| %>
+<%= form_for [@destination, @review] do |f| %>
   <div>
     <%= f.label :title %>
   </div>
@@ -50,6 +50,9 @@
   </div>
   <div>
     <%= f.cktext_area :content, rows: 10 %>
+  </div>
+  <div>
+    <%= f.hidden_field 'user_id', :value => @review.user.id %>
   </div>
   <div>
     <%= f.submit %>
