@@ -5,6 +5,12 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="container">
         <!-- Portfolio Item Row -->
+        <% if flash[:message] %>
+            <div class="alert alert-<%= flash[:flash] %>" role="alert">
+                <%= flash[:message] %>
+            </div>
+        <% end %>
+
         <div class="row">
             <div class="col-md-8">
                 <img class="img-responsive" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg"
@@ -50,14 +56,17 @@
                             <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %> 
                             </p>
                         </div>
+                        
                         <div class="media-body" style= "width:900px">
                             <h3 class="media-heading">
-                            <%= link_to review.title, controller: "review", action: "show", id: review.id %>
+                            <%# <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
+                            <%= link_to review.title, [@destination, review] %>
                             </h3>
+                            
+                            <div style= "height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                <%= review.content.html_safe %>
+                            </div>
 
-                            <p style= "height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
-                                <%= review.content%>
-                            </p>
                             <ul class="list-inline list-unstyled text-right">
                                 <li><span><i class="glyphicon glyphicon-calendar"></i>
                                         <%= review.created_at%> </span></li>
@@ -81,7 +90,8 @@
             <%end%>
             <hr>
             <div class="offset-4 col-8">
-                <%= button_to "Create new review", { :controller=>"review", :action => "create"}, :class => 'btn btn-primary' %>
+                <%# <%= button_to "Create new review", { :controller=>"reviews", :action => "new"}, :class => 'btn btn-primary' %>
+                <%= link_to "Create new review", new_destination_review_path(@destination), :class => 'btn btn-primary' %>
             </div>
         </div>
 </main>
