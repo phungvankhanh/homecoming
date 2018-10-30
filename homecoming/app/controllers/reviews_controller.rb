@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
         destination_id = params[:destination_id]
         @destination = Destination.find(destination_id)
         @review = @destination.reviews.build
-        @review.rating = 1
+        @review.rating = 0
         @user = User.find(1)
         @review.user = @user
     end

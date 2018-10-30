@@ -19,31 +19,18 @@
     <%= f.text_field :title, :class => 'col-12' %>
   </div>
   <hr>
-  <div class="radio-group">
-    <div>
-        <%= f.label :Rating %>
-    </div>
-    <div>
-        <%= f.radio_button :rating, 1 %>
-        <%= f.label :Very_Bad %>
-    </div>
-    <div>
-        <%= f.radio_button :rating, 2 %>
-        <%= f.label :Bad %>
-    </div>
-    <div>
-        <%= f.radio_button :rating, 3 %>
-        <%= f.label :Normal %>
-    </div>
-    <div>
-        <%= f.radio_button :rating, 4 %>
-        <%= f.label :Nice %>
-    </div>
-    <div>
-        <%= f.radio_button :rating, 5 %>
-        <%= f.label :Very_Nice %>
-    </div>
-  </div>
+  <div>
+  <%= f.label :rating %>
+</div>
+  <div class="star-rating" display="inline">
+    <span class="fa fa-star-o" data-rating="1"></span>
+    <span class="fa fa-star-o" data-rating="2"></span>
+    <span class="fa fa-star-o" data-rating="3"></span>
+    <span class="fa fa-star-o" data-rating="4"></span>
+    <span class="fa fa-star-o" data-rating="5"></span>
+    <%= f.text_field :rating, :type => "hidden", :class => "rating-value" %>
+    <strong class = "type">address</strong>
+</div> 
   <hr>
   <div>
     <%= f.label :content %>
@@ -74,3 +61,5 @@
 </div>
 
 </div>
+
+<script src="/assets/star_rating.js"></script>

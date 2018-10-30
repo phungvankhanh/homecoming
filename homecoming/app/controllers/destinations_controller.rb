@@ -27,6 +27,8 @@ class DestinationsController < ApplicationController
   def create
     @destination = Destination.new(destination_params)
     if @destination.save
+      flash[:message] = "Request to create new destination: \"#{@destination.name}\" successfully"
+      flash[:flash] = "success"
       redirect_to :action => 'index'
     else
       render :action =>'new'

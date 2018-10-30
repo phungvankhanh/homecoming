@@ -5,21 +5,18 @@
         <!-- Sidebar -->
         <aside class="col-md-4">
             <div class="sidebar-box">
-                <h4>Categories</h4>
+                <h4>Filter</h4>
                 <%= form_tag destinations_path, :method => 'get', :id => "destinations_filter", remote: true, :dataType => "script" do %>
                 <div class="list-group list-group-root">
                     <a class="list-group-item" href="index.html">Home Page</a>
-                    <a class="list-group-item" href="examples.html">Place</a>
+                    <a class="list-group-item">Rating</a>
                     <div class="list-group"> 
-                        <% (0..4).step(1) do |i|%>
-                        <a class="list-group-item img-check active"> <strong> <%=i+1%> star</strong>
-                        <%= check_box_tag("rates[]", i+1, checked = true, class: 'hidden checkbox') %>
+                        <% (0..5).step(1) do |i|%>
+                        <a class="list-group-item img-check active"> <strong> <%= render 'shared/star', :locals => {:rating => i  }%></strong>
+                        <%= check_box_tag("rates[]", i, checked = true, class: 'hidden checkbox') %>
                         </a>
                         <%end%>
-                        
-                        <a class="list-group-item" href="one-column.html">Place hot</a>
                     </div>
-                    <a class="list-group-item" href="three-column.html">Place suggestions</a>
                 </div>
                 <%end%>
             </div>
@@ -75,8 +72,7 @@ $(document).ready(function(e){
         var check = checkbox.checked
         if (check == false){
             $(this).toggleClass("active");
-            $(checkbox).prop('checked',true);
-            console.log(checkbox.checked);      
+            $(checkbox).prop('checked',true);      
             $.ajax({
                 url: '/destinations',
                 type: "GET",
@@ -88,7 +84,6 @@ $(document).ready(function(e){
             console.log(checkbox.checked); 
             $(this).removeClass("active");
             $(checkbox).prop('checked',false);
-            console.log(checkbox.checked); 
             $.ajax({
                 url: $("#destinations_filter").attr("action"),
                 type: "GET",
@@ -102,3 +97,4 @@ $(document).ready(function(e){
 
 
 </script>
+<script src="../assets/star.js"></script>

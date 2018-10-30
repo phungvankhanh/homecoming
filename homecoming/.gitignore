@@ -30,3 +30,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /vendor/*
+
+# Ignore database config
+/config/database.yml
+/db/schema.rb
