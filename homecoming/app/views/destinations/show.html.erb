@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <img class="img-responsive" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg"
+                <img class="img-responsive" src="<%= @destination.picture_path%>"
                     alt="">
             </div>
 
@@ -51,7 +51,7 @@
                 <div class="well" style ="background-color:#ffffff">
                     <div class="media"  style= "height: 170px">
                         <div class="pull-left">
-                            <img class="media-object" src="http://placekitten.com/150/150" alt="">
+                            <img class="media-object" src="<%= review.user.picture_path%>" alt="">
                             <p style= "width: 150px;text-align:center">
                             <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %> 
                             </p>
@@ -59,7 +59,6 @@
                         
                         <div class="media-body" style= "width:900px">
                             <h3 class="media-heading">
-                            <%# <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
                             <%= link_to review.title, [@destination, review] %>
                             </h3>
                             
@@ -90,7 +89,6 @@
             <%end%>
             <hr>
             <div class="offset-4 col-8">
-                <%# <%= button_to "Create new review", { :controller=>"reviews", :action => "new"}, :class => 'btn btn-primary' %>
                 <%= link_to "Create new review", new_destination_review_path(@destination), :class => 'btn btn-primary' %>
             </div>
         </div>
