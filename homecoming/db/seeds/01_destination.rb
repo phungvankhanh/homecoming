@@ -7,7 +7,8 @@ CSV.foreach(File.join(Rails.root, 'db', 'seeds', 'convertcsv.csv'), :headers => 
   Destination.create!(name: row[0],
                       address: row[1],
                       speciality: Faker::Food.dish,
-                      picture_path: row[2])
+                      picture_path: 'https://media.gadventures.com/media-server/cache/fc/49/fc4918f6280bdf785e1011a488e195ce.jpg',
+                      state: true)
 end
 p "Created #{Destination.count} movies"
 

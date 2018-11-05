@@ -1,0 +1,68 @@
+<div class="container">
+<% if @review.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <%= @review.errors.full_messages.first %>
+    </div>
+<% end %>
+<hr>
+<h2>Create new review for destination: 
+    <span class="badge badge-secondary">
+        <%= @review.destination.name %>
+    </span>
+</h2>
+
+<%= form_for [@destination, @review] do |f| %>
+  <div>
+    <%= f.label :title %>
+  </div>
+  <div>
+    <%= f.text_field :title, :class => 'col-12' %>
+  </div>
+  <hr>
+  <div>
+  <%= f.label :rating %>
+</div>
+  <div class="star-rating" display="inline">
+    <span class="fa fa-star-o" data-rating="1"></span>
+    <span class="fa fa-star-o" data-rating="2"></span>
+    <span class="fa fa-star-o" data-rating="3"></span>
+    <span class="fa fa-star-o" data-rating="4"></span>
+    <span class="fa fa-star-o" data-rating="5"></span>
+    <%= f.text_field :rating, :type => "hidden", :class => "rating-value" %>
+    <strong class = "type">address</strong>
+</div> 
+  <hr>
+  <div>
+    <%= f.label :content %>
+  </div>
+  <div>
+    <%= f.cktext_area :content, rows: 10 %>
+  </div>
+  <div>
+    <%= f.hidden_field 'user_id', :value => @review.user.id %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<hr>
+<div class="item ">
+    <div class="thumbnail">
+        <div class="caption">
+            <h4 class="group inner list-group-item-heading">
+                <span class="badge badge-secondary">Destination: </span>
+                <%= @review.destination.name %></h4>
+        <p class="group inner list-group-item-text">
+            <span class="badge badge-secondary">Address: </span>
+            <%= @review.destination.address %></h4></p>
+        <p class="group inner list-group-item-text">
+            <span class="badge badge-secondary">Speciality: </span>
+            <%= @review.destination.speciality %></h4></p>
+            <img class="group list-group-image" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt="" />
+    </div>
+</div>
+
+</div>
+
+<script src="/assets/star_rating.js"></script>

@@ -1,0 +1,88 @@
+<!------ Include the above in your HEAD tag ---------->
+<main>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+    <!-- Portfolio Item Row -->
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-responsive" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt="">
+        </div>
+        <div class="col-md-6">
+            <h3>Nha trang </h3>
+            <p>Trong khi đi du lịch, Chúng ta sẽ tìm hiểu những địa điểm mới, quen biết thêm nhiều người hơn. Bằng cách tương tác với những địa điểm mới và những con người mới, chúng ta sẽ được tìm hiểu những di sản mà họ có. Trong trường hợp khác, nó giúp chúng ta có thể bồi dưỡng thêm về mặt tâm hồn và tính cách, tăng thêm kinh nghiệm sống. Hiểu thêm về bản chất con người có thể trở thành một phương pháp tốt trong việc giáo dục. Du lịch sẽ đáp ứng tất cả nhu cầu của một con người về, nó là một sở thích tốt giúp giải tỏa miền đam mê, bồi sưỡng tâm hồn và cả thể lực.</p>
+            <ul>
+                <li>Create by <a href="http://startbootstrap.com/template-overviews/portfolio-item">Homecomming</a>.</li>             
+                <li>Rating by  <a href="http://tympanus.net/codrops/author/hugogiraudel">10</a> people <a href="http://tympanus.net/codrops/2012/11/14/creative-css-loading-animations/"></a>.</li>
+                <li>
+    <div class="col-lg-12">
+      <div class="star-rating">
+        <span class="fa fa-star-o" data-rating="1"></span>
+        <span class="fa fa-star-o" data-rating="2"></span>
+        <span class="fa fa-star-o" data-rating="3"></span>
+        <span class="fa fa-star-o" data-rating="4"></span>
+        <span class="fa fa-star-o" data-rating="5"></span>
+        <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+      </div>
+    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Related Projects Row -->
+    <h3 class="page-header">Comment</h3>
+    <div class="row">
+    	<br>
+    	    <form action="mailto:someaddr@somedomainforexample.com" method="get">
+   <textarea name="body" style="border-style: solid;"></textarea><br/>
+    <input type="submit" value="submit">
+    </form>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3 col-xs-6">
+            <a href="#"><img class="img-responsive portfolio-item" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt=""></a>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <a href="#"><img class="img-responsive portfolio-item" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt=""></a>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <a href="#"><img class="img-responsive portfolio-item" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt=""></a>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <a href="#"><img class="img-responsive portfolio-item" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt=""></a>
+        </div>
+    </div>
+    <!-- /.row -->
+    <hr>
+</div>
+<style type="text/css">
+	li{
+		display: list-item;
+	}
+</style>
+<script type="text/javascript">
+var $star_rating = $('.star-rating .fa');
+
+var SetRatingStar = function() {
+  return $star_rating.each(function() {
+    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('fa-star-o').addClass('fa-star');
+    } else {
+      return $(this).removeClass('fa-star').addClass('fa-star-o');
+    }
+  });
+};
+
+$star_rating.on('click', function() {
+  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  return SetRatingStar();
+});
+
+SetRatingStar();
+$(document).ready(function() {
+
+});
+</script>
+</main>
