@@ -18,7 +18,8 @@
 						<h6 class="comment-name by-author"> <%= link_to comment.user.nickname, user_path(comment.user_id) %></h6>
 						<span> <%= comment.created_at %></span>
 						<i class="fa fa-reply" onclick="Reply(this)"></i>
-						<i class="fa fa-remove" onclick="#{<%= link_to destination_review_comment_path(comment), method: :delete%>}"></i>
+						
+						<i class="fa fa-remove"><%= link_to "Delete", destination_review_comment_path(comment.review.destination, comment.review, comment), method: :delete%></i>
 						<i class="fa fa-edit"></i>
 					</div>
 					<div class="comment-content">
@@ -29,7 +30,7 @@
 				</div>
 				</div>
 				<div class="col-md-1"></div>
-			  <div class="row reply_part" style="display: none;">
+			  <div class="row reply_part">
 				
 				<div class="comment-main-level reply-box" style= "width: 95%" >
 				<!-- Avatar -->
