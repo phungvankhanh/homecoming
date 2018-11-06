@@ -6,10 +6,9 @@ var Remove =function(){
 }
 
 var Reply =function(button){
-    console.log(jQuery(button).parent('.comment'));
-    $parent = jQuery(button).parent('.row .comment');
-    $reply = $parent.children('.part_reply');
-    
+    $id = jQuery(button).attr('id');
+    $reply = $("#reply_".concat($id));
+    console.log($reply);
     $reply.removeAttr('style');
 }
 
