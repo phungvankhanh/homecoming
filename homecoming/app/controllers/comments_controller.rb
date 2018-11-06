@@ -17,11 +17,13 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment.descendants.each do |comment_des|
-          comment_des.destroy
-        end
+        # @comment.descendants.each do |comment_des|
+        #   comment_des.destroy
+        # end
+        @comment = Comment.find(params[:id])
         @comment.destroy
-        redirect_to :back
+        @review = Review.find(params[:review_id])
+        redirect_to [@review.destination, @review]
     end
 
     private
