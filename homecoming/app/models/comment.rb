@@ -7,4 +7,6 @@ class Comment < ApplicationRecord
     validates :content, presence: true
     validates :user, presence: true
     validates :review, presence: true
+
+    acts_as_tree order: "created_at ASC"
 end

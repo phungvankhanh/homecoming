@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'profile', to: 'user#show'
 
   resources :destinations do
-    resources :reviews
+    resources :reviews do 
+      resources :comments, only: [:create, :destroy]
+    end
   end
   resources :users
+
 end

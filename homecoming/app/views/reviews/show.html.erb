@@ -42,9 +42,9 @@
                 </aside> 
                 
                 <!-- Main content -->
-                <div class="col-md-8">
+    <div class="col-md-8">
                     
-                    <div class="container">
+    <div>
     <div class="well well-sm">
         <strong>Category Title</strong>
         <div class="btn-group">
@@ -117,7 +117,11 @@
     </div>
 </div>
 
-                    # list index
+                    <div >
+                    <%= render "comments/comment_form", review: @review, parent_id: nil, comment_new: @comment %>
+                    <%= comments_tree_for @review.comments.hash_tree(limit_depth: 5),
+                        @review, @comment %>
+                  </div>
                 </div>             
             </div> 
 
@@ -126,3 +130,4 @@
         <!-- Bootcamp JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </main>
+<script src="/assets/reply.js"></script>
