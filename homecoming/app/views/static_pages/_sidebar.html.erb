@@ -1,0 +1,16 @@
+ <aside class="col-md-4">
+        <div class="sidebar-box">
+            <h4>New Place</h4>
+        </div>
+        <% new_destinations.each do |new_destinations| %>
+        <div >
+         <div class="card text-center">
+                          <img class="card-img-top" src="<%= new_destinations.picture_path %>" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text"><%= new_destinations.speciality%></p>
+                            <a href="/destinations/<%=new_destinations.id%>" class="btn btn-primary"><%= new_destinations.name%></a>
+               </div>
+    </div>
+     </div>
+     <% end %>
+    </aside> 
