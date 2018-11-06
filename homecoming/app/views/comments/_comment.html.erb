@@ -1,0 +1,50 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/comments.css">
+<!------ Include the above in your HEAD tag ---------->
+				<!-- Respuestas de los comentarios -->
+				<div class="row comment">
+				<div id="form-comment<%= review.id %>" style= "width: 95%">
+				<div  >
+				  
+				<div class="comment-main-level" style= "width: 95%">
+				<!-- Avatar -->
+				<div class="comment-avatar"><img style="max-height: 60px" src= <%= comment.user.picture_path%> alt=""></div>
+				<!-- Contenedor del Comentario -->
+				<div class="comment-box">
+					<div class="comment-head">
+						<h6 class="comment-name by-author"> <%= link_to comment.user.nickname, user_path(comment.user_id) %></h6>
+						<span> <%= comment.created_at %></span>
+						<i class="fa fa-reply" onclick="Reply(this)"></i>
+						<i class="fa fa-remove" onclick="#{<%= link_to destination_review_comment_path(comment), method: :delete%>}"></i>
+						<i class="fa fa-edit"></i>
+					</div>
+					<div class="comment-content">
+					<%= comment.content %>
+					</div>
+				</div>
+			</div>
+				</div>
+				</div>
+				<div class="col-md-1"></div>
+			  <div class="row reply_part" style="display: none;">
+				
+				<div class="comment-main-level reply-box" style= "width: 95%" >
+				<!-- Avatar -->
+				<div class="comment-avatar"><img style="max-height: 60px" src= <%= current_user.picture_path%> alt=""></div>
+				<!-- Contenedor del Comentario -->
+				<div class="comment-box">
+				<div class="col-md-11 comment-content">
+				<%= render "comments/comment_form", review: review, parent_id: comment.id,
+				comment_new: comment_new %>
+			</div>
+
+				</div>
+			</div>
+
+			
+			  </div>
+			  </div>
+			 

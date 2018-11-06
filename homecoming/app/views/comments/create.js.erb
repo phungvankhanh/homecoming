@@ -1,0 +1,3 @@
+console.log("why ");
+$('#form-comment<%= @comment.review_id %>').append("<%= j render(@comment) %>");
+$('#form-comment form textarea').val('');
