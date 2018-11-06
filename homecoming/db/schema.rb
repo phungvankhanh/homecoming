@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_105108) do
     t.index ["descendant_id"], name: "comment_desc_idx"
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_105108) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "address"
     t.text "speciality"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_105108) do
     t.boolean "state"
   end
 
-  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.integer "rating"
     t.text "content"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_105108) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
     t.string "nickname"
     t.string "password"

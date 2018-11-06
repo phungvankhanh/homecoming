@@ -7,5 +7,4 @@ class Destination < ApplicationRecord
     def self.filter(rate)
         joins(:reviews).having('round(avg(rating)) in (?)', rate).group(:id).order('destinations.created_at DESC')
     end
-
 end
