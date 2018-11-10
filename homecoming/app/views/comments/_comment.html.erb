@@ -11,7 +11,11 @@
 				  
 				<div class="comment-main-level" style= "width: 95%">
 				<!-- Avatar -->
-				<div class="comment-avatar"><img style="max-height: 60px" src= <%= comment.user.picture_path%> alt=""></div>
+				<% if comment.user.picture_path != nil %>
+				<div class="comment-avatar"><img style="max-height: 60px" src= "<%= comment.user.picture_path%>" alt="no picture"></div>
+				<% else %>
+				<div class="comment-avatar"><img style="max-height: 60px" src="http://digitalspyuk.cdnds.net/17/25/980x490/landscape-1498216547-avatar-neytiri.jpg" alt="no picture"></div>
+				<% end %>
 				<!-- Contenedor del Comentario -->
 				<div class="comment-box">
 					<div class="comment-head">
@@ -34,7 +38,11 @@
 				
 				<div class="comment-main-level reply-box" style= "width: 95%" >
 				<!-- Avatar -->
-				<div class="comment-avatar"><img style="max-height: 60px" src= <%= current_user.picture_path%> alt=""></div>
+				<% if comment.user.picture_path == nil %>
+				<div class="comment-avatar"><img style="max-height: 60px" src= "<%= comment.user.picture_path%>" alt="no picture"></div>
+				<% else %>
+				<div class="comment-avatar"><img style="max-height: 60px" src="http://digitalspyuk.cdnds.net/17/25/980x490/landscape-1498216547-avatar-neytiri.jpg" alt="no picture"></div>
+				<% end %>
 				<!-- Contenedor del Comentario -->
 				<div class="comment-box" style= "width: 95%">
 				<div class="col-md-11 comment-content" style= "width: 95%">
