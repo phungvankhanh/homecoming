@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       @destinations = Destination.all 
     end
     @destinations = @destinations.paginate(:page => params[:page], :per_page => 6)
-    @hot_destinations=Destination.find_by(id:1)
+    @hot_destinations=Destination.all.limit(1)
     @new_destinations=Destination.all.limit(3).order("id DESC")
     end
   end
