@@ -23,8 +23,8 @@
                         <div class="card text-center">
                           <img class="card-img-top" src="<%= destination.picture_path %>" alt="Card image cap">
                           <div class="card-body">
-                            <p class="card-text"><%= destination.speciality%></p>
-                            <a href="/destinations/<%=destination.id%>" class="btn btn-primary"> <%= destination.name%></a>
+                            <p class="card-text" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 210px;'><%= destination.speciality%></p>
+                            <a href="/destinations/<%=destination.id%>" class="btn btn-primary" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 130px;' > <%= destination.name%></a>
                           </div>
                         </div>
                     </div>

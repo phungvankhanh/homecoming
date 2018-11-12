@@ -17,7 +17,7 @@
                     alt="">
             </div>
 
-            <div class="col s12 m6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">
@@ -26,7 +26,7 @@
                             </h3>
                         </span>
                         <div>
-                            <iframe width="300" height="100" frameborder="0" style="border:0" src="<%=google_map(@destination.name)%>"
+                            <iframe style="margin-left: 4px;height: 315px;width: 491px;" frameborder="0" style="border:0" src="<%=google_map(@destination.name)%>"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -42,7 +42,11 @@
                             </li>
                         </ul>
                     </div>
-                </div </div> </div> </div> <div>
+                </div >
+            </div>
+             </div>
+              </div>
+                 <div>
                 <h3 class="page-header">Reviews</h3>
             </div>
             <% if @destination.reviews.count != 0 %>
