@@ -1,0 +1,4 @@
+console.log("Begin delete: " + <%= @comment.id %>);
+$('#comment-container-<%= @comment.id %>').remove();
+console.log("End delete: " + <%= @comment.id %>);
+$('#replies-for-<%= @comment.id %>').remove();

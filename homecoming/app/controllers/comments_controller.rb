@@ -4,14 +4,14 @@ class CommentsController < ApplicationController
         if params[:comment][:parent_id].to_i > 0
             parent = Comment.find_by id: params[:comment].delete(:parent_id)
             @comment = parent.children.build comment_params
-          else
-            @comment = Comment.new comment_params
-          end
-           if @comment.save
+            else
+                @comment = Comment.new comment_params
+            end
+            if @comment.save
             print('save')
             respond_to do |format|
-                format.html{redirect_back(fallback_location: root_path)}
-              format.js
+                # format.html{redirect_back(fallback_location: root_path)}
+                format.js
             end
         end
     end
@@ -22,8 +22,11 @@ class CommentsController < ApplicationController
         # end
         @comment = Comment.find(params[:id])
         @comment.destroy
-        @review = Review.find(params[:review_id])
-        redirect_to [@review.destination, @review]
+        # @review = Review.find(params[:review_id])
+        # redirect_to [@review.destination, @review]
+        respond_to do |format|
+            format.js
+        end
     end
 
     private
