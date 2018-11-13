@@ -4,7 +4,7 @@
     <div class="container">
 
         <!-- Company name shown on mobile -->
-        <a class="navbar-brand" href="/">HomeComming</a>
+        <a class="navbar-brand" href="/">HomeComing</a>
 
         <!-- Mobile menu toggle -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,24 +17,19 @@
                 <li class="nav-item active">
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
+                <% if user_signed_in? %>
                 <li class="nav-item dropdown">
                              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Place</a>
                                         <div class="dropdown-menu navbar-dark bg-primary">
                                               <a class="dropdown-item" href="/destinations/new">new place</a>
-                                              <a class="dropdown-item" href="/destinations">place hot</a>
-                                              <a class="dropdown-item" href="one-column.html">place suitable</a>
-                                              <a class="dropdown-item active"  href="text.html"> place suggestions</a>
+                                              <a class="dropdown-item" href="/destinations">Place all</a>
                                         </div>
                 </li>
-
-
+                <%else%>
                 <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="/destinations">Place all</a>
                 </li>
-
-                <li class="nav-item">
-                        <a class="nav-link" href="/reviews/create">Review</a>
-                </li>
+                <%end%>
 
                 <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>

@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
                 @comment = Comment.new comment_params
             end
             if @comment.save
-            print('save')
             respond_to do |format|
                 # format.html{redirect_back(fallback_location: root_path)}
                 format.js
