@@ -1,0 +1,102 @@
+<!------ Include the above in your HEAD tag ---------->
+<main>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div class="container">
+        <!-- Portfolio Item Row -->
+        <% if flash[:message] %>
+            <div class="alert alert-<%= flash[:flash] %>" role="alert">
+                <%= flash[:message] %>
+            </div>
+        <% end %>
+
+        <div class="row">
+            <div class="col-md-8">
+                <img class="img-responsive" src="<%= @destination.picture_path%>"
+                    alt="">
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <h3>
+                                <%= @destination.name%>
+                            </h3>
+                        </span>
+                        <div>
+                            <iframe style="margin-left: 4px;height: 315px;width: 491px;" frameborder="0" style="border:0" src="<%=google_map(@destination.name)%>"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <ul>
+                            <li> Address: <strong>
+                                    <%= @destination.address%></strong> </li>
+                            <li> Speciality: <strong>
+                                    <%= @destination.speciality%></strong> </li>
+                            <li> Reviewed by: <strong>
+                                    <%= @destination.reviews.count%> </strong></li>
+                            <li>
+                                <%= render 'shared/star', :locals => {:rating => ave_rating(@destination.reviews.sum(:rating),@destination.reviews.count)  }%>
+                            </li>
+                        </ul>
+                    </div>
+                </div >
+            </div>
+             </div>
+              </div>
+                 <div>
+                <h3 class="page-header">Reviews</h3>
+            </div>
+            <% if @destination.reviews.count != 0 %>
+            <% @destination.reviews.each do |review| %>
+            <div class="row">
+                <div class="well" style ="background-color:#ffffff">
+                    <div class="media"  style= "height: 170px">
+                        <div class="pull-left">
+                            <img class="media-object" src="<%= review.user.picture_path%>" alt="">
+                            <p style= "width: 150px;text-align:center">
+                            <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %> 
+                            </p>
+                        </div>
+                        
+                        <div class="media-body" style= "width:900px">
+                            <h3 class="media-heading">
+                            <%= link_to review.title, [@destination, review] %>
+                            </h3>
+                            
+                            <div style= "height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                <%= review.content.html_safe %>
+                            </div>
+
+                            <ul class="list-inline list-unstyled text-right">
+                                <li><span><i class="glyphicon glyphicon-calendar"></i>
+                                        <%= review.created_at%> </span></li>
+                                <li>|</li>
+                                <span><i class="glyphicon glyphicon-comment"></i>
+                                    <%= review.comments.count%></span>
+                                <li>|</li>
+                                <li>
+                                    <%= render 'shared/star', :locals => {:rating => review.rating  }%>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%end%>
+            <% else %>
+            <div class="offset-4 col-8">
+                <p><strong> There is no review. </strong></p>
+            </div>
+            <%end%>
+            <hr>
+            <div class="offset-4 col-8">
+                <%= link_to "Create new review", new_destination_review_path(@destination), :class => 'btn btn-primary' %>
+            </div>
+        </div>
+</main>
+
+</script>
+<script src="../assets/star.js"></script>

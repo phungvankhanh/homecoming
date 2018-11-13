@@ -5,10 +5,12 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
+gem 'mysql2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'rails_admin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -45,6 +47,9 @@ gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 gem 'paperclip', '~> 6.1'
 # A Ruby Gem that provides the same functionality of jQuery Raty library, and adds IMDB style rating.
 gem 'ratyrate', '~> 1.2.2.alpha'
+gem 'will_paginate-bootstrap4'
+gem 'jquery-rails'
+gem 'closure_tree'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,6 +63,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'faker'
+  gem 'csv'
 end
 
 group :test do

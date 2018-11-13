@@ -1,0 +1,28 @@
+<main>
+
+      <%= render 'static_pages/slider' %>
+      
+        
+        <!-- Main content area -->
+        <!-- Coloured bg jumbotron -->   
+        <div class="sidebar-box sidebar-box-bg" style="margin-right:145px ; margin-left: 145px; ">
+            <div style="text-align: center;">
+                        <h4>Let's go </h4>
+                        <p>go many actual when young children, age children is the following long</p>    
+                    </div>  
+                </div>
+    <div class="container">
+<div class="row">
+    
+    <!-- Main content -->
+<%= render 'static_pages/content',:destinations => @destinations,:hot_destinations=>@hot_destinations  %>   
+    <!-- Sidebar -->
+    <%= render 'static_pages/sidebar', :new_destinations=>@new_destinations %>   
+</div> 
+</div>
+ 
+        <!-- Gray bg jumbotron -->
+        <!-- Footer -->
+        <!-- Bootcamp JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</main>

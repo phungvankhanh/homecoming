@@ -1,0 +1,29 @@
+<div class="well well-sm" id="filterrific_results">
+        <strong>Category Title</strong>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+
+<article>
+            <div class="card-container" style="padding: 0rem 0 !important;">
+            <div class="container">
+                <div class="padded-box row">
+                <% destinations.each do |destination|%>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                          <img class="card-img-top" src="<%= destination.picture_path %>" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text"><%= destination.speciality%></p>
+                            <a href="/destinations/<%=destination.id%>" class="btn btn-primary" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 130px;' > <%= destination.name%></a>
+                          </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+                <div><%= will_paginate @destinations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer%> </div>
+        </article>

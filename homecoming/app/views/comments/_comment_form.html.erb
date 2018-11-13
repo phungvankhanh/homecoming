@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+  <span id="form-comment" style= "width: 95%">
+    <%= form_for [review.destination, review, comment_new], remote: true do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :review_id, value: review.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :content, placeholder: "Commpose new comment", :style => "display: inline-block;",
+        required: true, class: "form-control comment-input" %>
+      <%= f.submit "Submit", class: "btn btn-xs btn-custom2" %>
+    <% end %>
+  </span>
+<% end %>
