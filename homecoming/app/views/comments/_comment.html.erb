@@ -20,7 +20,12 @@
 				<!-- Contenedor del Comentario -->
 				<div class="comment-box">
 					<div class="comment-head">
+					<%if comment.user.id == comment.review.user.id%>
 						<h6 class="comment-name by-author">
+						<% else %>
+						<h6 class="comment-name">
+						<%end%>
+
 							<%= link_to comment.user.nickname, user_path(comment.user_id) %>
 						</h6>
 						<span>

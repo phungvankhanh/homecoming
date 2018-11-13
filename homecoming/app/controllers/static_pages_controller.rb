@@ -1,12 +1,8 @@
 class StaticPagesController < ApplicationController
   def index
-    if params[:rates] != nil
-      @destinations = Destination.filter(params[:rates])
-    else
-      @destinations = Destination.all 
-    end
+      @destinations = Destination.left_joins(:reviews).group(:id).order('COUNT(reviews.id) DESC')
     @destinations = @destinations.paginate(:page => params[:page], :per_page => 6)
-    @hot_destinations=Destination.all.limit(1)
-    @new_destinations=Destination.all.limit(3).order("id DESC")
+    @hot_destinations= Destination.left_joins(:reviews).group(:id).order('avg(reviews.rating) DESC').limit(1)
+    @new_destinations=Destination.order("created_at DESC").limit(3)
     end
   end

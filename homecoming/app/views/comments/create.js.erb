@@ -3,3 +3,6 @@ $('.comment-input').val('');
 console.log($('#replies-for-<%= @comment.parent_id %>'));
 $('#replies-for-<%= @comment.parent_id %>').append('<%= escape_javascript(render(@comment, review: @comment.review, comment_new: Comment.new)) %>');
 $('#replies-for-<%= @comment.parent_id %>').append('<%= escape_javascript(render :partial => 'comments/replies_for', :locals => {:comment_id => @comment.id }) %>');
+$('html, body').animate({
+	scrollTop: $("#comment-container-<%= @comment.id %>").offset().top
+},1000);
