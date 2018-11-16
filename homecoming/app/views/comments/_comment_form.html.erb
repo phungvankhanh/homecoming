@@ -6,7 +6,11 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.text_area :content, placeholder: "Commpose new comment", :style => "display: inline-block;",
         required: true, class: "form-control comment-input" %>
-      <%= f.submit "Submit", class: "btn btn-xs btn-custom2" %>
+        <br><br>
+        <div>
+      <%= f.submit "Submit", class: "btn btn-xs btn-custom2", style: "float: right;" %>
+      </div>
+      
     <% end %>
   </span>
 <% end %>

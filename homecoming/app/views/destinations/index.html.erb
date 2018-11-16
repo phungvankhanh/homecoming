@@ -9,7 +9,7 @@
                 <%= form_tag destinations_path, :method => 'get', :id => "destinations_filter", remote: true, :dataType => "script" do %>
                 <div class="list-group list-group-root">
                     <a class="list-group-item" href="index.html">Home Page</a>
-                    <a class="list-group-item">Rating</a>
+                    <a class="list-group-item">Filter</a>
                     <div class="list-group"> 
                         <% (0..5).step(1) do |i|%>
                         <a class="list-group-item img-check active"> <strong> <%= render 'shared/star', :locals => {:rating => i  }%></strong>
@@ -52,7 +52,6 @@
 
             <div id = "destinations">
                 <%= render 'shared/list_destination', :destinations => @destinations%>
-                # list index
             </div>
         </div>
 
