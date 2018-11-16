@@ -20,8 +20,8 @@
                 <div class="padded-box row">
                 <% destinations.each do |destination|%>
                     <div class="col-md-4">
-                        <div class="card text-center">
-                          <img class="card-img-top" src="<%= destination.picture_path %>" alt="Card image cap">
+                        <div class="card text-center" style= "height: 297px;width: 230px;margin-bottom : 20px;">
+                          <img class="card-img-top" style="width: 100%; height : 170px" src="<%= destination.picture_path %>" alt="Card image cap">
                           <div class="card-body">
                             <p class="card-text" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 210px;'><%= destination.speciality%></p>
                             <a href="/destinations/<%=destination.id%>" class="btn btn-primary" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 130px;' > <%= destination.name%></a>
@@ -35,25 +35,4 @@
         
         </article>
 
-
-        <!-- Example pagination Bootstrap component -->
-        <nav>
-            <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-            </ul>
-        </nav>
     </div>

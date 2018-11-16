@@ -6,15 +6,14 @@
     <div class="container">
         <!-- Portfolio Item Row -->
         <% if flash[:message] %>
-            <div class="alert alert-<%= flash[:flash] %>" role="alert">
-                <%= flash[:message] %>
-            </div>
+        <div class="alert alert-<%= flash[:flash] %>" role="alert">
+            <%= flash[:message] %>
+        </div>
         <% end %>
 
         <div class="row">
             <div class="col-md-8">
-                <img class="img-responsive" src="<%= @destination.picture_path%>"
-                    alt="">
+                <img class="img-responsive" src="<%= @destination.picture_path%>" alt="">
             </div>
 
             <div class="col-md-4">
@@ -26,8 +25,8 @@
                             </h3>
                         </span>
                         <div>
-                            <iframe style="margin-left: 4px;height: 315px;width: 491px;" frameborder="0" style="border:0" src="<%=google_map(@destination.name)%>"
-                                allowfullscreen>
+                            <iframe style="margin-left: 4px;height: 315px;width: 491px;" frameborder="0" style="border:0"
+                                src="<%=google_map(@destination.name)%>" allowfullscreen>
                             </iframe>
                         </div>
                         <ul>
@@ -42,31 +41,35 @@
                             </li>
                         </ul>
                     </div>
-                </div >
+                </div>
             </div>
-             </div>
-              </div>
-                 <div>
+        </div>
+        <div class="row">
+            <div>
                 <h3 class="page-header">Reviews</h3>
             </div>
             <% if @destination.reviews.count != 0 %>
             <% @destination.reviews.each do |review| %>
             <div class="row">
-                <div class="well" style ="background-color:#ffffff">
-                    <div class="media"  style= "height: 170px">
+                <div class="well" style="background-color:#ffffff">
+                    <div class="media" style="height: 170px">
                         <div class="pull-left">
-                            <img class="media-object" src="<%= review.user.picture_path%>" alt="">
-                            <p style= "width: 150px;text-align:center">
-                            <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %> 
+                            <% if review.user.picture_path != nil %>
+                                <img class="media-object" style ="width: auto; height: 150px" src= " <%=review.user.picture_path%>" alt = "have image">
+                            <% else %>
+                                <img class="media-object" style ="width: auto; height: 150px" src="https://us.123rf.com/450wm/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg?ver=6" >
+                            <% end %>
+                            <p style="width: 150px;text-align:center">
+                                <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %>
                             </p>
                         </div>
-                        
-                        <div class="media-body" style= "width:900px">
+
+                        <div class="media-body" style="width:900px">
                             <h3 class="media-heading">
-                            <%= link_to review.title, [@destination, review] %>
+                                <%= link_to review.title, [@destination, review] %>
                             </h3>
-                            
-                            <div style= "height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+
+                            <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
                                 <%= review.content.html_safe %>
                             </div>
 
@@ -87,16 +90,17 @@
             </div>
             <%end%>
             <% else %>
-            <div class="offset-4 col-8">
-                <p><strong> There is no review. </strong></p>
-            </div>
-            <%end%>
+                <div class="offset-4 col-8">
+                    <p><strong> There is no review. </strong></p>
+                </div>
+            <% end %>
             <hr>
-            <div class="offset-4 col-8">
-                <%= link_to "Create new review", new_destination_review_path(@destination), :class => 'btn btn-primary' %>
-            </div>
+            <% if user_signed_in?%>
+                <div class="offset-4 col-8">
+                    <%= link_to "Create new review", new_destination_review_path(@destination), :class => 'btn btn-primary' %>
+                </div>
+            <% end %>
         </div>
+    </div>
 </main>
-
-</script>
 <script src="../assets/star.js"></script>

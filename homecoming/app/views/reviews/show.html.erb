@@ -56,12 +56,14 @@
                                         <%= @review.title %>
                                         <%# <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
                                     </h3>
+                                    <% if current_user.id == @review.user.id %>
                                     <div class="pull-right ml-3">
                                         <%= link_to 'Delete', destination_review_path(@review), method: :delete %>
                                     </div>
                                     <div class="pull-right">
                                         <%= link_to 'Edit', edit_destination_review_path(@review) %>
                                     </div>
+                                    <% end %>
                                     <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
                                         <%= @review.content.html_safe %>
                                     </div>
@@ -106,6 +108,8 @@
             </div>
             <div id="replies-for-">
                 <%= render "comments/comment_form", review: @review, parent_id: nil, comment_new: @comment %>
+                <br>
+                <br>
                 <%= comments_tree_for @review.comments.hash_tree(limit_depth: 5), @review %>
             </div>
         </div>

@@ -31,9 +31,11 @@
 						<span>
 							<%= comment.created_at %></span>
 						<i class="fa fa-reply" id="<%=comment.id%>" onclick="Reply(this)"></i>
+						<% if current_user.id == comment.user.id %>
 						<i class="fa fa-remove">
 							<%= link_to "Delete", destination_review_comment_path(comment.review.destination, comment.review, comment), remote: true, method: :delete %></i>
 						<i class="fa fa-edit"></i>
+						<%end%>
 					</div>
 					<div class="comment-content">
 						<%= comment.content %>
@@ -43,7 +45,7 @@
 		</div>
 	</div>
 	<div class="col-md-1" id="What The Fuck"></div>
-	<div class="row reply_part" id='reply_<%=comment.id%>' style="display: none; width: 95%">
+	<div class="row reply_part" id='reply_<%=comment.id%>' style="display: none; width: 90%">
 		<div class="comment-main-level reply-box" style="width: 95%">
 			<!-- Avatar -->
 			<% if comment.user.picture_path == nil %>
@@ -53,8 +55,8 @@
 				 alt="no picture"></div>
 			<% end %>
 			<!-- Contenedor del Comentario -->
-			<div class="comment-box" style="width: 95%">
-				<div class="col-md-11 comment-content" style="width: 95%">
+			<div class="comment-box" style="width: 85%">
+				<div class="col-md-13 comment-content" style="width: 100%">
 					<%= render "comments/comment_form", review: review, parent_id: comment.id,
 				comment_new: comment_new %>
 				</div>
