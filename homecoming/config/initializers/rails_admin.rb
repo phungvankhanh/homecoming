@@ -27,14 +27,17 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
 
   config.actions do
-    dashboard                     # mandatory
+    config.included_models = %w[ Comment Destination Review User ]
+    dashboard               # mandatory
     index                         # mandatory
-    new
+    new do
+      except %w[Comment Review]
+    end
     export
     bulk_delete
     show
     edit do
-      only Destination
+      only %w[Destination User]
     end
     delete
     show_in_app
