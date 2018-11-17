@@ -38,11 +38,11 @@
 						</div>
 
 						<div class="form-group row">
-						<%= f.label :picture_path, "Picture *", class: "col-4 col-form-label" %>
+						<%= f.label :image, "Picture *", class: "col-4 col-form-label" %>
 						<div class="col-8">
 							<img src="#" class="avatar img-circle img-thumbnail" alt="avatar" style="display :none;width :700px">
 							<h6>Upload a different photo...</h6>
-							<%= f.file_field :picture_path, class: "text-center center-block file-upload", id: "picture_path", required: true %>
+							<%= f.file_field :image, class: "text-center center-block file-upload", id: "picture_path", required: true %>
 						</div>
 					</div>
 					<div class="form-group row">

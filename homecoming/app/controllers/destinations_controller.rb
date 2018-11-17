@@ -26,6 +26,7 @@ class DestinationsController < ApplicationController
 
   def create
     @destination = Destination.new(destination_params)
+    @destination.state = 1
     if @destination.save
       flash[:message] = "Request to create new destination: \"#{@destination.name}\" successfully"
       flash[:flash] = "success"
@@ -74,9 +75,9 @@ class DestinationsController < ApplicationController
       :destination
     ).permit(
       :name,
+      :image,
       :address,
-      :speciality,
-      :picture_path
+      :speciality
     )
 
   end
