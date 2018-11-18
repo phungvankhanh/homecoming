@@ -15,6 +15,15 @@ class CommentsController < ApplicationController
         end
     end
 
+    def update
+        @comment = Comment.find(params[:id])
+        if @comment.update!(comment_params)
+            respond_to do |format|
+                format.js
+            end
+        end
+    end
+
     def destroy
         # @comment.descendants.each do |comment_des|
         #   comment_des.destroy
