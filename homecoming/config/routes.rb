@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :destinations do
     resources :reviews do 
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy, :update]
     end
   end
   resources :users

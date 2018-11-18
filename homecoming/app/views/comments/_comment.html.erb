@@ -34,12 +34,29 @@
 						<% if current_user.id == comment.user.id %>
 						<i class="fa fa-remove">
 							<%= link_to "Delete", destination_review_comment_path(comment.review.destination, comment.review, comment), remote: true, method: :delete %></i>
-						<i class="fa fa-edit"></i>
+						<i class="fa fa-edit" onclick="open_edit_comment(this);" data-comment-id="<%= comment.id %>">Edit</i>
 						<%end%>
 					</div>
 					<div class="comment-content">
+						<div id="comment-content-<%= comment.id %>">
 						<%= comment.content %>
+						</div>
+						<div id="comment-edit-container-<%= comment.id %>" style="display: none;">
+							<hr>
+							<%= form_for comment, url: destination_review_comment_url(comment.review.destination, comment.review, comment), remote: true do |f| %>
+								<%= f.hidden_field :id, value: comment.id %>
+								<%= f.text_area :content, placeholder: "Enter update comemnt", :style => "display: inline-block;",
+								  required: true, class: "form-control comment-input" %>
+								  <br><br>
+								  <div>
+								<%= f.submit "Submit", class: "btn btn-xs btn-custom2", style: "float: right;" %>
+								</div>
+								
+							<% end %>
+							
+						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
