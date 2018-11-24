@@ -1,11 +1,15 @@
 class DestinationsController < ApplicationController
   def index
-    if params[:rates] != nil
-      @destinations = Destination.filter(params[:rates])
+    if !params[:rates].blank? && !params[:categories].blank?
+      @destinations = Destination.filter(params[:rates],params[:categories],params[:search])
+      @destinations = @destinations.paginate(:page => params[:page], :per_page => 9)
+    elsif params[:rates].blank? && params[:categories].blank? && params[:search].blank?
+      @destinations = Destination.all
+      @destinations = @destinations.paginate(:page => params[:page], :per_page => 9)
     else
-      @destinations = Destination.all 
+      @destinations = []
     end
-     @destinations = @destinations.paginate(:page => params[:page], :per_page => 10)
+     
   end
 
   def show
@@ -50,19 +54,15 @@ class DestinationsController < ApplicationController
     @newest_destination = newest_destination()
     @best_destination = best_destination()
   end
-  private 
-  def top_destination
-    @destination = Destination.left_joins(:reviews).group(:id).order('COUNT(reviews.id) DESC').limit(4)
-  end
 
-  private 
-  def best_destination
-    @destination = Destination.left_joins(:reviews).group(:id).order('avg(reviews.rating) DESC').first()
-  end
-
-  private 
-  def newest_destination
-    @destination = Destination.order("created_at DESC").limit(5)
+  def search
+  	if params[:search].blank? 
+      redirect_to(destinations_path, alert: "Emptyfffffffffffffffff field!") and return  
+    else  
+      @parameter = params[:search].downcase  
+      @destinations = Destination.all.where("lower(name) LIKE :search or lower(address) LIKE :search", search: "%#{@parameter}%").paginate(:page => params[:page], :per_page => 9) 
+      render 'destinations/index'
+    end  
   end
 
   private
