@@ -9,4 +9,11 @@ class Comment < ApplicationRecord
     validates :review, presence: true
 
     acts_as_tree order: "created_at ASC"
+
+    after_create_commit { notify }
+
+    private
+    def notify
+      Notification.create(event: "New Notification (#{self.content})")
+    end
 end

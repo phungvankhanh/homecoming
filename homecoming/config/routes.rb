@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   mount Ckeditor::Engine => '/ckeditor'
   root 'static_pages#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'user#show'
 
   resources :destinations do
-    resources :reviews do 
+    resources :reviews do
       resources :comments, only: [:create, :destroy, :update]
     end
   end
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   resources :groups, only: [:new, :create, :show, :destroy]
   get '/search' => 'destinations#search', :as => 'search_page'
 
+  mount ActionCable.server => '/cable'
 end
