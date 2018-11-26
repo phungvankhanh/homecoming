@@ -24,16 +24,16 @@
                             <div class="caption">
                                 <h4 class="group inner list-group-item-heading">
                                     <span class="badge badge-secondary">Destination: </span>
-                                    Vịnh Hạ Long
+                                    <%= link_to @group.destination.name, @group.destination %>
                                 </h4>
                                 <p class="group inner list-group-item-text">
                                     <span class="badge badge-secondary">Address: </span>
-                                    Quảng Ninh
+                                    <%= @group.destination.address %>
                                     
                                 </p>
                                 <p class="group inner list-group-item-text">
                                     <span class="badge badge-secondary">Speciality: </span>
-                                    Vegetable Soup
+                                    <%= @group.destination.speciality %>
                                     
                                 </p>
                             </div>
