@@ -1,16 +1,16 @@
 <header class="header-image" style="background-image: url('/assets/bg3.jpg');height: 183px;">
 <!-- Main navigation -->
 <div class="row" style="margin-left: 580px;">
-  <%= form_tag(search_page_path, :method => "get",   
-    class: 'navbar-form navbar-left') do %>  
-  <div class="input-group">  
-    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
-    <div class="input-group-btn">  
-      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-    </div>  
-  </div>  
+  <%= form_tag(search_page_path, :method => "get",
+    class: 'navbar-form navbar-left') do %>
+  <div class="input-group">
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
+    </div>
+  </div>
 <% end %>
-</div> 
+</div>
 <nav class="row navbar navbar-expand-md navbar-dark" style="margin-top: 10px;">
     <div class="container">
 
@@ -55,6 +55,9 @@
                     </li>
                     <li class="nav-item">
                         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= render "notifications/notification_center", notifications: @notifications %>
                     </li>
                 <% else %>
                     <li class="nav-item">
