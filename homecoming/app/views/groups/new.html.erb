@@ -1,0 +1,44 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<div class="container">
+  <h1>Create new group</h1>
+  <hr>
+
+  <%= form_for Group.new do |f| %>
+  <div>
+    <%= f.label "Group name" %>
+  </div>
+  <div>
+    <%= f.text_field :name, :class => 'col-12' %>
+  </div>
+  <hr>
+  <div>
+    <%= f.label "Choose destination" %>
+  </div>
+  <div>
+    <%= f.select :destination, get_destinations, id: :destinations %>
+  </div>
+  <hr>
+  <div>
+    <%= f.label "Description" %>
+  </div>
+  <div>
+    <%= f.cktext_area :description, rows: 10 %>
+  </div>
+  <div>
+    <%= f.label "Add members" %>
+  </div>
+  <div>
+    <%= f.collection_select :members, get_members, :id, :email, {id: :members}, {multiple: "multiple", style: "width:100%;"} %>
+  </div>
+  <div>
+    <%= f.hidden_field :owner, :value => current_user.id %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>
+
+<script src="/assets/group.js"></script>

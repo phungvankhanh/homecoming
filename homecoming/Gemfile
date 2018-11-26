@@ -51,7 +51,7 @@ gem 'paperclip', '~> 6.1'
 # A Ruby Gem that provides the same functionality of jQuery Raty library, and adds IMDB style rating.
 gem 'ratyrate', '~> 1.2.2.alpha'
 gem 'will_paginate-bootstrap4'
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.3'
 gem 'closure_tree'
 gem 'carrierwave'
 gem 'mini_magick'

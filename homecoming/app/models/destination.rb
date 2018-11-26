@@ -2,6 +2,7 @@ class Destination < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :destination_category, dependent: :destroy
     has_many :category, through: :destination_category
+    has_many :groups, inverse_of: :destination, dependent: :destroy
 
     validates :name, presence: true
     validates :address, presence: true

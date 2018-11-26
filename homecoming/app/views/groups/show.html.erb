@@ -1,0 +1,88 @@
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+      <!-- Title -->
+      <h1 class="mt-4"><span class="badge badge-dark">Group</span> <%= @group.name %></h1>
+
+      <!-- Author -->
+      <p class="lead">
+        created by
+        <a href="#"> <%= @group.owner.nickname %> | <%= @group.owner.email %></a>
+      </p>
+
+      <!-- Date/Time -->
+      <p>Last updated at <%= @group.updated_at %></p>
+
+      <!-- Preview Image -->
+      <div class="item ">
+                        <div class="thumbnail">  
+                            <div class="caption">
+                                <h4 class="group inner list-group-item-heading">
+                                    <span class="badge badge-secondary">Destination: </span>
+                                    Vịnh Hạ Long
+                                </h4>
+                                <p class="group inner list-group-item-text">
+                                    <span class="badge badge-secondary">Address: </span>
+                                    Quảng Ninh
+                                    
+                                </p>
+                                <p class="group inner list-group-item-text">
+                                    <span class="badge badge-secondary">Speciality: </span>
+                                    Vegetable Soup
+                                    
+                                </p>
+                            </div>
+                            <img class="group list-group-image img-fluid rounded" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt="">
+                        </div>
+                    </div>
+
+      <hr>
+
+      <!-- Post Content -->
+      <p class="lead"></p>
+      <hr>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+    <!-- Description -->
+    <div class="card my-4">
+      <h5 class="card-header">Description</h5>
+      <div class="card-body">
+        <%= @group.description.html_safe %>
+      </div>
+    </div>
+
+      <!-- List Members -->
+      <div class="card my-4">
+        <h5 class="card-header">Members <span class="badge badge-dark"><%= @group.members.size %></span></h5>
+        <div class="card-body">
+          <% @group.members.each do |member| %>
+            <!-- Single Member -->
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="https://robohash.org/porrodoloreipsum.png?size=300x300&set=set1" style="width:50px; height: 50px;" alt="">
+            <div class="media-body">
+            <h5 class="mt-0"><%= link_to member.nickname, member, class: "mt-0" %></h5>
+              
+              Email:
+              <%= member.email %>
+            </div>
+          </div>
+          <% end %>
+          
+        </div>
+      </div>      
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
