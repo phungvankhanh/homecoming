@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resources :groups, only: [:new, :create, :show, :destroy]
   get '/search' => 'destinations#search', :as => 'search_page'
 
 end
