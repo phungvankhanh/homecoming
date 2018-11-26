@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resources :groups, only: [:new, :create, :show, :destroy]
   get '/search' => 'destinations#search', :as => 'search_page'
+  get '/create_group' => 'tests#create_group'
+  get '/show_group' => 'tests#show_group'
+  get '/destroy_group' => 'tests#destroy_group'
+  get '/add_member_to_group' => 'tests#add_member_to_group'
 
   mount ActionCable.server => '/cable'
 end

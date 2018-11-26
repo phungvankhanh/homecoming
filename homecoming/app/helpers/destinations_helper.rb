@@ -11,4 +11,10 @@ module DestinationsHelper
             sum/count
         end
     end
+
+    def get_destinations
+        Destination.all.collect do |destination|
+            [destination.name, destination.id]
+        end
+    end
 end
