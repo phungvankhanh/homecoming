@@ -14,6 +14,6 @@ class Comment < ApplicationRecord
 
     private
     def notify
-      Notification.create(event: "New Notification (#{self.content})")
+      Notification.create(event: "New Notification Comment review (#{self.content})")
     end
 end
