@@ -1,7 +1,11 @@
 $(document).ready(function() {
-    $('#group_destination').select2();
+    if($( "#group_destination" ).length) {
+        $('#group_destination').select2();
+    }
 });
 
 $(document).ready(function() {
-    $('#group_members').select2();
+    if($( "#group_members" ).length) {
+        $('#group_members').select2();
+    }
 });
