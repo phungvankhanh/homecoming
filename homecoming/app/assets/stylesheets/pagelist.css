@@ -3538,6 +3538,7 @@ tbody.collapse.show {
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #fff;
+  color:  #151313 !important;
   border: 1px solid rgba(0, 0, 0, 0.125); }
   .list-group-item:first-child {
     border-top-left-radius: 10px;
@@ -3554,8 +3555,8 @@ tbody.collapse.show {
     background-color: #fff; }
   .list-group-item.active {
     z-index: 2;
-    color: #fff;
-    background-color: #4c5e6b;
+    color: #fff !important;
+    background-color: #5876e2;
     border-color: #4c5e6b; }
 
 .list-group-flush .list-group-item {

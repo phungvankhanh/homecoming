@@ -29,10 +29,10 @@
                 </li>
                 <% if user_signed_in? %>
                 <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Place</a>
-                                        <div class="dropdown-menu navbar-dark bg-primary">
-                                              <a class="dropdown-item" href="/destinations/new">new place</a>
-                                              <a class="dropdown-item" href="/destinations">Place all</a>
+                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="dropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">Place</a>
+                                        <div class="dropdown-menu navbar-dark bg-primary" aria-labelledby="dropdownMenuLink">
+                                              <a class="nav-link" href="/destinations/new">New place</a>
+                                              <a class="nav-link" href="/destinations">Place all</a>
                                         </div>
                 </li>
                 <%else%>
@@ -50,12 +50,14 @@
                         <%= link_to "Admin", rails_admin_path, class: "nav-link" %>
                     </li>
                     <% end %>
-                    <li class="nav-item">
-                        <%= link_to "Profile", current_user, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="profile" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.email.split('@')[0]%></a>
+                               <div class="dropdown-menu navbar-dark bg-primary" aria-labelledby="profile">
+                               <%= link_to "New group", '/groups/new', class: "nav-link" %>
+                                    <%= link_to "Profile", current_user, class: "nav-link" %>
+                                     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                               </div>
+       </li>
                     <li class="nav-item">
                       <%= render "notifications/notification_center", notifications: @notifications %>
                     </li>

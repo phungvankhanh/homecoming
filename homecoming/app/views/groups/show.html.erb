@@ -46,9 +46,22 @@
           <img class="group list-group-image img-fluid rounded" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg"
             alt="">
         </div>
+        <div>
+        <%= render 'news/index', :newses => @group.news.order("created_at DESC")%>
+        </div>
+        <div>
+        <%if current_user.id == @group.owner.id%>
+        <br>
+        <h2>New news</h2>
+        <hr>
+        <%= render 'news/new', :news => @news, :group => @group%>
+        <%end%>
+        </div>
+        <div> 
+          
+        </div>
       </div>
 
-      <hr>
 
       <!-- Post Content -->
       <p class="lead"></p>
@@ -129,3 +142,4 @@
 
 </div>
 <!-- /.container -->
+<script src="../assets/news.js"></script>

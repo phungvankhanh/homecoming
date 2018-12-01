@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+
+
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+.news_list{
+  width: 800px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.news {
+  display: block;
+}
+
+
+.detail {
+  width: 100%;
+  background: #fff;
+  transition: all 0.2s ease-in-out;
+  padding: 3px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.open .detail {
+  background: #2995a0;
+  color: #ccc;
+  border-bottom: 0;
+}
+
+.toolbar {
+  width: 100%;
+  background: #fff;
+  height: 0;
+  position: relative;
+  transition: height 0.2s ease-in-out;
+  perspective: 200px;
+  overflow: hidden;
+}
+
+.open .toolbar {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #eee;
+}
+.content {
+
+  margin: 10px 15px 15px 15px;
+}
+
+time {
+  display: inline-block;
+  float: left;
+  width: 150px;
+  height: 150px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(197, 44, 102);
+  text-align: center;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+}
+time  span {
+  display: none;
+  width: 100%;
+}
+.day {
+  display: block;
+  font-size: 56pt;
+  font-weight: 100;
+  line-height: 1;
+
+}
+.month {
+  display: block;
+  font-size: 24pt;
+  font-weight: 900;
+  line-height: 1;
+
+}
+
+.year {
+  display: block;
+  font-size: 14pt;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.info {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 225px;
+  height: 150px;
+}
+.info  .title {
+  font-size: 17pt;
+  font-weight: 700;
+  margin: 0px;
+}
+.info .desc {
+  font-size: 13pt;
+  font-weight: 300;
+  margin: 0px;
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  right: 10px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 20px;
+  float: right;
+  height: 150px;
+}

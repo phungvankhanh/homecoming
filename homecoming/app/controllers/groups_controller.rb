@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find params[:id]
+    @news = News.new
   end
 
   private
