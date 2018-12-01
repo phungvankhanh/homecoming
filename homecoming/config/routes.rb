@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     end
   end
   resources :users
-  resources :groups, only: [:new, :create, :show, :destroy]
+  resources :groups, only: [:new, :create, :show, :destroy] do
+    resources :news
+  end
   get '/search' => 'destinations#search', :as => 'search_page'
   get '/create_group' => 'tests#create_group'
   get '/show_group' => 'tests#show_group'

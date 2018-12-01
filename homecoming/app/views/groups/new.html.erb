@@ -30,7 +30,7 @@
     <%= f.label "Add members" %>
   </div>
   <div>
-    <%= f.collection_select :members, get_members, :id, :email, {id: :members}, {multiple: "multiple", style: "width:100%;"} %>
+    <%= f.collection_select :members, get_members, :id, :email, {id: :members}, {multiple: "multiple", style: "width:100%;", class: "collection_select_background"}%>
   </div>
   <div>
     <%= f.hidden_field :owner, :value => current_user.id %>
