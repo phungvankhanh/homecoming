@@ -1,0 +1,38 @@
+ <div class="col-md-8">
+    
+        <article>
+            <% hot_destinations.each do |hot_destinations|%>
+            <div  style='margin-top: 54px;'>
+                        <div class="card text-center">
+                          <img class="card-img-top" src="<%= hot_destinations.picture_path %>" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text"><%= hot_destinations.speciality%></p>
+                            <a href="/destinations/<%=hot_destinations.id%>" class="btn btn-primary"><%= hot_destinations.name%></a>
+                          </div>
+                        </div>
+                    </div>   
+                    <% end %>     
+        </article>
+
+        <article>
+            <div class="card-container" style="padding: 0rem 0 !important;">
+            <div class="container">
+                <div class="padded-box row">
+                <% destinations.each do |destination|%>
+                    <div class="col-md-4">
+                        <div class="card text-center" style= "height: 297px;width: 230px;margin-bottom : 20px;">
+                          <img class="card-img-top" style="width: 100%; height : 170px" src="<%= destination.picture_path %>" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 210px;height: 31px;'><%= destination.speciality%></p>
+                            <a href="/destinations/<%=destination.id%>" class="btn btn-primary" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 130px;' > <%= destination.name%></a>
+                          </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        </article>
+
+    </div>

@@ -1,0 +1,4 @@
+console.log("Started update.js");
+console.log('#comment-content-<%= @comment.parent_id %>');
+$('#comment-content-<%= @comment.id %>').html('<%= @comment.content %>')
+$('#comment-edit-container-<%= @comment.id %>').css("display", "none");

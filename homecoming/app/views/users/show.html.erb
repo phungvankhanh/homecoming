@@ -9,119 +9,212 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<hr>
 <div class="container bootstrap snippet">
     <div class="row">
-          <div class="col-sm-10"><h1><%= @user.email %></h1></div>
-    	    <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
+        <div class="col-sm-10">
+            <h1>
+                <%= @user.nickname %>
+            </h1>
+        </div>
     </div>
+    <br>
     <div class="row">
-  		<div class="col-sm-3"><!--left col-->
+        <div class="col-sm-3">
+            <!--left col-->
 
 
-      <div class="text-center">
-      <% if @user.picture_path == nil %>
+            <div class="text-center">
+                <% if @user.picture_path == nil %>
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                <% else %>
+                <img src="<%= @user.picture_path%>" class="avatar img-circle img-thumbnail" alt="avatar">
+                <% end %>
+                <h6>Upload a different photo...</h6>
+                <input type="file" class="text-center center-block file-upload" name="picture_path" id="picture_path"
+                    value="<%= @user.picture_path %>">
+            </div>
+            </hr><br>
 
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <% else %>
-        <img src= "#{user.picture_path}" class="avatar img-circle img-thumbnail" alt="avatar">
-        <% end %>
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload" name="picture_path" id="picture_path" value = "<%= @user.picture_path %>">
-      </div></hr><br>
-
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Reviews</strong></span> <%= @user.reviews.count %></li>
-          </ul>
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Reviews</strong></span>
+                    <%= @user.reviews.count %>
+                </li>
+            </ul>
 
 
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li class="active"><a data-toggle="tab" href="#history">History</a></li>
+            </ul>
 
-              </ul>
 
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div class="col-xs-6">
+                        <label for="email">
+                            <h4>Email: </h4>
+                        </label>
+                        <div>
+                            <%= @user.email %>
+                        </div>
+                        <!-- <input type="email" class="form-control" name="email" id="email" value = "<%= @user.email %>" placeholder="<%= @user.email %>" title="enter your email."> -->
+                    </div>
+                    <% if current_user.id == @user.id %>
+                    <form class="form" action="/users" method="post" id="registrationForm">
+                        <div class="form-group">
 
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <div class="col-xs-6">
-                              <label for="email"><h4>Email: <%= @user.email %></h4></label>
-                              <!-- <input type="email" class="form-control" name="email" id="email" value = "<%= @user.email %>" placeholder="<%= @user.email %>" title="enter your email."> -->
-                          </div>
-                  <form class="form" action="/users" method="post" id="registrationForm">
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="nickname"><h4>Nickname</h4></label>
-                              <input type="text" class="form-control" name="nickname" id="nickname" value ="<%= @user.nickname %>" placeholder= "<%= @user.nickname %>" title="enter your nickname">
-                          </div>
-
-                      </div>
-                      <div class="form-group">
-                      </div>
-
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Old Password(*)</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" value = "<%= @user.password %>" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="password"><h4>New Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" value = "<%= @user.password %>" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Password Confirmation</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" value = "<%= @user.password %>" placeholder="password2" title="Re-enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            <div class="col-xs-6">
+                                <label for="nickname">
+                                    <h4>Nickname</h4>
+                                </label>
+                                <input type="text" class="form-control" name="nickname" id="nickname" value="<%= @user.nickname %>"
+                                    placeholder="<%= @user.nickname %>" title="enter your nickname">
                             </div>
-                      </div>
-              	</form>
 
-              <hr>
+                        </div>
+                        <div class="form-group">
+                        </div>
 
-          </div><!--/tab-content-->
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password">
+                                    <h4>Old Password(*)</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password" id="password" value="<%= @user.password %>"
+                                    placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
 
-        </div><!--/col-9-->
-    </div><!--/row-->
+                            <div class="col-xs-6">
+                                <label for="password">
+                                    <h4>New Password</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password" id="password" value="<%= @user.password %>"
+                                    placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
 
-    <script>$(document).ready(function() {
-        var readURL = function(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                            <div class="col-xs-6">
+                                <label for="password2">
+                                    <h4>Password Confirmation</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password2" id="password2" value="<%= @user.password %>"
+                                    placeholder="password2" title="Re-enter your password2.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>
+                                    Save</button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
+                                    Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                    <% else %>
 
-                reader.onload = function (e) {
-                    $('.avatar').attr('src', e.target.result);
+                    <div class="col-xs-6">
+                    <label for="nickname">
+                        <h4>Nickname: </h4>
+                    </label>
+                    <div>
+                        <%= @user.nickname %>
+                    </div>
+                </div> 
+                    <% end %>
+                    <hr>
+
+                </div>
+
+                <div class="tab-pane inactive" id="history">
+                    <% if @user.reviews.count ==0%>
+                    <h1> There is no review </h1>
+                    <% else %>
+                    <br>
+                    <% @user.reviews.each do |review| %>
+                    <div class="row">
+                        <div class="well" style="background-color:#ffffff">
+                            <div class="media" style="height: 170px">
+                                <div class="pull-left">
+                                    <% if review.user.picture_path != nil %>
+                                    <img class="media-object" style="width: auto; height: 150px" src=" <%=review.user.picture_path%>"
+                                        alt="have image">
+                                    <% else %>
+                                    <img class="media-object" style="width: auto; height: 150px" src="https://us.123rf.com/450wm/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg?ver=6">
+                                    <% end %>
+                                    <p style="width: 150px;text-align:center">
+                                        <%= link_to review.user.nickname, controller: "users", action: "show", id: review.user.id %>
+                                    </p>
+                                </div>
+
+                                <div class="media-body" style="width:600px">
+                                    <h3 class="media-heading">
+                                        <%= link_to review.title, [review.destination, review] %>
+                                    </h3>
+
+                                    <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                        <%= review.content.html_safe %>
+                                    </div>
+
+                                    <ul class="list-inline list-unstyled text-right">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i>
+                                                <%= review.created_at%> </span></li>
+                                        <li>|</li>
+                                        <span><i class="glyphicon glyphicon-comment"></i>
+                                            <%= review.comments.count%></span>
+                                        <li>|</li>
+                                        <li>
+                                            <%= render 'shared/star', :locals => {:rating => review.rating  }%>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%end%>
+                    <%end%>
+
+
+                </div>
+
+                <!--/tab-content-->
+
+            </div>
+            <!--/col-9-->
+        </div>
+        <!--/row-->
+
+        <script>
+            $(document).ready(function () {
+                var readURL = function (input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('.avatar').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
                 }
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".file-upload").on('change', function(){
-            readURL(this);
-        });
-    });
-    </script>
+                $(".file-upload").on('change', function () {
+                    readURL(this);
+                });
+            });
+        </script>

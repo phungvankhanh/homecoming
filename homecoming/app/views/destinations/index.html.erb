@@ -9,13 +9,22 @@
                 <%= form_tag destinations_path, :method => 'get', :id => "destinations_filter", remote: true, :dataType => "script" do %>
                 <div class="list-group list-group-root">
                     <a class="list-group-item" href="index.html">Home Page</a>
-                    <a class="list-group-item">Rating</a>
+                    <%= hidden_field_tag('search',value= params[:search])%>
+                    <a class="list-group-item">Filter by rating</a>
                     <div class="list-group"> 
                         <% (0..5).step(1) do |i|%>
                         <a class="list-group-item img-check active"> <strong> <%= render 'shared/star', :locals => {:rating => i  }%></strong>
                         <%= check_box_tag("rates[]", i, checked = true, class: 'hidden checkbox') %>
                         </a>
                         <%end%>
+                    </div>
+                    <a class="list-group-item">Filter by location</a>
+                    <div class="list-group"> 
+                        <% Category.all.each do |category|%>
+                        <a class="list-group-item img-check active">  <%= category['name']%>
+                        <%= check_box_tag("categories[]", category['id'], checked = true, class: 'hidden checkbox') %>
+                        </a>
+                        <% end %>
                     </div>
                 </div>
                 <%end%>
@@ -26,15 +35,6 @@
                 <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu
                     pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>
             </div>
-
-            <div class="sidebar-box">
-                <h4>Search site</h4>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-
             <div class="sidebar-box">
                 <h4>Helpful Links</h4>
                 <ul>
@@ -49,10 +49,17 @@
 
         <!-- Main content -->
         <div class="col-md-8">
+        <div class="well well-sm" id="filterrific_results">
+        <%if params[:search].blank? %>
+        <strong> List Destination</strong>
+        <%else%>
+        <strong> <%= params[:search]%></strong>
+        <%end%>
+    </div>
+
 
             <div id = "destinations">
                 <%= render 'shared/list_destination', :destinations => @destinations%>
-                # list index
             </div>
         </div>
 

@@ -1,0 +1,84 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+ crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/comments.css">
+<!------ Include the above in your HEAD tag ---------->
+<!-- Respuestas de los comentarios -->
+<div class="row comment" id="comment-container-<%= comment.id %>">
+	<div id="form-comment<%= review.id %>" style="width: 95%">
+		<div>
+			<div class="comment-main-level" style="width: 95%">
+				<!-- Avatar -->
+				<% if comment.user.picture_path != nil %>
+				<div class="comment-avatar"><img style="max-height: 60px" src="<%= comment.user.picture_path%>" alt="no picture"></div>
+				<% else %>
+				<div class="comment-avatar"><img style="max-height: 60px" src="http://digitalspyuk.cdnds.net/17/25/980x490/landscape-1498216547-avatar-neytiri.jpg"
+					 alt="no picture"></div>
+				<% end %>
+				<!-- Contenedor del Comentario -->
+				<div class="comment-box">
+					<div class="comment-head">
+					<%if comment.user.id == comment.review.user.id%>
+						<h6 class="comment-name by-author">
+						<% else %>
+						<h6 class="comment-name">
+						<%end%>
+
+							<%= link_to comment.user.nickname, user_path(comment.user_id) %>
+						</h6>
+						<span>
+							<%= comment.created_at %></span>
+						<i class="fa fa-reply" id="<%=comment.id%>" onclick="Reply(this)"></i>
+						<% if current_user.id == comment.user.id %>
+						<i class="fa fa-remove">
+							<%= link_to "Delete", destination_review_comment_path(comment.review.destination, comment.review, comment), remote: true, method: :delete %></i>
+						<i class="fa fa-edit" onclick="open_edit_comment(this);" data-comment-id="<%= comment.id %>">Edit</i>
+						<%end%>
+					</div>
+					<div class="comment-content">
+						<div id="comment-content-<%= comment.id %>">
+						<%= comment.content %>
+						</div>
+						<div id="comment-edit-container-<%= comment.id %>" style="display: none;">
+							<hr>
+							<%= form_for comment, url: destination_review_comment_url(comment.review.destination, comment.review, comment), remote: true do |f| %>
+								<%= f.hidden_field :id, value: comment.id %>
+								<%= f.text_area :content, placeholder: "Enter update comemnt", :style => "display: inline-block;",
+								  required: true, class: "form-control comment-input" %>
+								  <br><br>
+								  <div>
+								<%= f.submit "Submit", class: "btn btn-xs btn-custom2", style: "float: right;" %>
+								</div>
+								
+							<% end %>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1" id="What The Fuck"></div>
+	<div class="row reply_part" id='reply_<%=comment.id%>' style="display: none; width: 90%">
+		<div class="comment-main-level reply-box" style="width: 95%">
+			<!-- Avatar -->
+			<% if comment.user.picture_path == nil %>
+			<div class="comment-avatar"><img style="max-height: 60px" src="<%= comment.user.picture_path%>" alt="no picture"></div>
+			<% else %>
+			<div class="comment-avatar"><img style="max-height: 60px" src="http://digitalspyuk.cdnds.net/17/25/980x490/landscape-1498216547-avatar-neytiri.jpg"
+				 alt="no picture"></div>
+			<% end %>
+			<!-- Contenedor del Comentario -->
+			<div class="comment-box" style="width: 85%">
+				<div class="col-md-13 comment-content" style="width: 100%">
+					<%= render "comments/comment_form", review: review, parent_id: comment.id,
+				comment_new: comment_new %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/assets/reply.js"></script>

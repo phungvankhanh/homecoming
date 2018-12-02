@@ -1,128 +1,119 @@
-        <!-- Main content area -->
-        <main class="container">
-            <div class="row">
-                             
-                <!-- Sidebar -->
-                <aside class="col-md-4">
-                    <div class="sidebar-box">
-                        <h4>Categories</h4>
-                        <div class="list-group list-group-root">
-                            <a class="list-group-item" href="index.html">Home Page</a>
-                            <a class="list-group-item" href="examples.html">Place</a>
-                            <div class="list-group">
-                                <a class="list-group-item" href="three-column.html">new Place </a>
-                                <a class="list-group-item" href="one-column.html">Place hot</a>
-                                <a class="list-group-item active" href="text.html">Place suitable</a>	
+<!-- Main content area -->
+<main class="container">
+    <div class="row">
+        <!-- Sidebar -->
+        <aside class="col-md-4">
+            <div class="sidebar-box">
+                <h4>More than Review</h4>
+                <div class="list-group list-group-root">
+                    <a class="list-group-item" href="index.html">Home Page</a>
+                    <a class="list-group-item" href="examples.html">Place</a>
+                    <div class="list-group">
+                        <a class="list-group-item" href="three-column.html">new Place </a>
+                        <a class="list-group-item" href="one-column.html">Place hot</a>
+                        <a class="list-group-item active" href="text.html">Place suitable</a>
+                    </div>
+                    <a class="list-group-item" href="three-column.html">Place suggestions</a>
+                </div>
+            </div>
+            <div class="sidebar-box sidebar-box-bg">
+                <h4>About us</h4>
+                <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu
+                    pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>
+            </div>
+            <div class="sidebar-box">
+                <h4>Search site</h4>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="sidebar-box">
+                <h4>Helpful Links</h4>
+                <ul>
+                    <li><a href="http://www.themeforest.net/?ref=spykawg" title="premium templates">Premium HTML web
+                            templates from $10</a></li>
+                    <li><a href="http://www.dreamhost.com/r.cgi?259541" title="web hosting">Cheap web hosting from
+                            Dreamhost</a></li>
+                    <li><a href="http://tuxthemes.com" title="Tux Themes">Premium WordPress themes</a></li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main content -->
+        <div class="col-md-8">
+            <div>
+                <div id="products" class="row list-group">
+                    <div class="item ">
+                        <div class="well" style="background-color:#ffffff">
+                            <div class="media" style="height: 170px">
+                                <div class="pull-left">
+                                    <img class="media-object" src="http://placekitten.com/150/150" alt="">
+                                    <p style="width: 150px;text-align:center">
+                                    </p>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading">
+                                        <%= @review.title %>
+                                        <%# <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
+                                    </h3>
+                                    <% if current_user.id == @review.user.id %>
+                                    <div class="pull-right ml-3">
+                                        <%= link_to 'Delete', destination_review_path(@review), method: :delete %>
+                                    </div>
+                                    <div class="pull-right">
+                                        <%= link_to 'Edit', edit_destination_review_path(@review) %>
+                                    </div>
+                                    <% end %>
+                                    <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                        <%= @review.content.html_safe %>
+                                    </div>
+                                    <ul class="list-inline list-unstyled text-right">
+                                        <li><span><i class="glyphicon glyphicon-calendar"></i>
+                                                <%= @review.created_at%> </span></li>
+                                        <li>|</li>
+                                        <span><i class="glyphicon glyphicon-comment"></i>
+                                            <%= @review.comments.count%></span>
+                                        <li>|</li>
+                                        <li>
+                                            <%= render 'shared/star', :locals => {:rating => @review.rating  }%>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <a class="list-group-item" href="three-column.html">Place suggestions</a>
                         </div>
                     </div>
-
-                    <div class="sidebar-box sidebar-box-bg">
-                        <h4>About us</h4>
-                        <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>    
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Search site</h4>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="text"  placeholder="Search" aria-label="Search">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Helpful Links</h4>
-                        <ul>
-                            <li><a href="http://www.themeforest.net/?ref=spykawg" title="premium templates">Premium HTML web templates from $10</a></li>
-                            <li><a href="http://www.dreamhost.com/r.cgi?259541" title="web hosting">Cheap web hosting from Dreamhost</a></li>
-                            <li><a href="http://tuxthemes.com" title="Tux Themes">Premium WordPress themes</a></li>
-                        </ul>
-                    </div>
-                </aside> 
-                
-                <!-- Main content -->
-                <div class="col-md-8">
-                    
-                    <div class="container">
-    <div class="well well-sm">
-        <strong>Category Title</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Grid</a>
-        </div>
-    </div>
-    <div id="products" class="row list-group">
-        
-        <div class="item ">
-                <div class="well" style ="background-color:#ffffff">
-                    <div class="media"  style= "height: 170px">
-                        <div class="pull-left">
-                            <img class="media-object" src="http://placekitten.com/150/150" alt="">
-                            <p style= "width: 150px;text-align:center">
-                            </p>
-                        </div>
-                        <div class="media-body" style= "width:900px">
-                            <h3 class="media-heading">
-                                <%= @review.title %>
-                            <%# <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
-                            </h3>
-
-                            <div class="pull-right ml-3">
-                                <%= link_to 'Delete', destination_review_path(@review), method: :delete %>
+                    <div class="item ">
+                        <div class="thumbnail">
+                            <img class="group list-group-image" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg"
+                                alt="" />
+                            <div class="caption">
+                                <h4 class="group inner list-group-item-heading">
+                                    <span class="badge badge-secondary">Destination: </span>
+                                    <%= @review.destination.name %>
+                                </h4>
+                                <p class="group inner list-group-item-text">
+                                    <span class="badge badge-secondary">Address: </span>
+                                    <%= @review.destination.address %>
+                                    </h4>
+                                </p>
+                                <p class="group inner list-group-item-text">
+                                    <span class="badge badge-secondary">Speciality: </span>
+                                    <%= @review.destination.speciality %>
+                                    </h4>
+                                </p>
                             </div>
-
-                            <div class="pull-right">
-                                <%= link_to 'Edit', edit_destination_review_path(@review) %>
-                            </div>
-
-                            
-
-                            <div style= "height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
-                                <%= @review.content.html_safe %>
-                            </div>
-                            <ul class="list-inline list-unstyled text-right">
-                                <li><span><i class="glyphicon glyphicon-calendar"></i>
-                                        <%= @review.created_at%> </span></li>
-                                <li>|</li>
-                                <span><i class="glyphicon glyphicon-comment"></i>
-                                    <%= @review.comments.count%></span>
-                                <li>|</li>
-                                <li>
-                                    <%= render 'shared/star', :locals => {:rating => @review.rating  }%>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="item ">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="https://advertisingvietnam.com/wp-content/uploads/2018/04/Du-l%E1%BB%8Bch-Vi%E1%BB%87t-Nam.jpg" alt="" />
-                    <div class="caption">
-                        <h4 class="group inner list-group-item-heading">
-                        <span class="badge badge-secondary">Destination: </span>
-                            <%= @review.destination.name %></h4>
-                        <p class="group inner list-group-item-text">
-                            <span class="badge badge-secondary">Address: </span>
-                            <%= @review.destination.address %></h4></p>
-                        <p class="group inner list-group-item-text">
-                            <span class="badge badge-secondary">Speciality: </span>
-                            <%= @review.destination.speciality %></h4></p>
-                </div>
+            <div id="replies-for-">
+                <%= render "comments/comment_form", review: @review, parent_id: nil, comment_new: @comment %>
+                <br>
+                <br>
+                <%= comments_tree_for @review.comments.hash_tree(limit_depth: 5), @review %>
             </div>
         </div>
     </div>
-</div>
-
-                    # list index
-                </div>             
-            </div> 
-
-
-
-        <!-- Bootcamp JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootcamp JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </main>

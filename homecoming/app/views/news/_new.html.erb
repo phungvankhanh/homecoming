@@ -1,0 +1,34 @@
+<div>
+<% if @news.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <%= @news.errors.full_messages.first %>
+    </div>
+<% end %>
+<%= form_for [group, news] do |f| %>
+  <div>
+    <%= f.label :title %>
+  </div>
+  <div>
+    <%= f.text_field :title, :class => 'col-12', required: true%>
+  </div>
+ 
+  <hr>
+  <div>
+    <%= f.label :content %>
+  </div>
+  <div>
+  <% if news.id.blank?%>
+    <%= f.cktext_area :content, id: "0", rows: 10, required: true%>
+    <%else%>
+    <%= f.cktext_area :content, id: "#{news.id}", rows: 10, require: true %>
+    <%end%>
+  </div>
+  <div>
+    <%= f.hidden_field 'user_id', :value => current_user.id %>
+  </div>
+  <div>
+  <br>
+    <%= f.submit 'Submit', :class => 'btn btn-primary', :style => "float:right; padding-right: 10px" %>
+  </div>
+<% end %>
+</div>

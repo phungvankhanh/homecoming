@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require jquery
@@ -18,7 +17,14 @@
 //= require ckeditor/init
 //= require_tree .
 
+
 $(document).ready(function() {
+  $('.navbar .dropdown').hover(function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+}, function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp()
+});
+
   $('#list').click(function(event) {
     event.preventDefault();$('#products .item').addClass('list-group-item');
   });
@@ -34,4 +40,6 @@ $(function() {
     return false;
   });
 });
+
+
 
