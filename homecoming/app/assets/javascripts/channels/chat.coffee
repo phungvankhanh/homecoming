@@ -30,9 +30,9 @@ $ ->
         """
         message_list_div = $('#message-list')
         message_list_div.append(content)
-        message_list_div.scrollTop()
+        message_list_div.animate({scrollTop: message_list_div[0].scrollHeight}, "slow")
     
-    $( "#send-message-to-group" ).on "click", ->
+    send_message = ->
       input_box = $("#input-message-to-group")
       message = input_box.val();
       sender_id = input_box.data('sender-id')
@@ -42,5 +42,11 @@ $ ->
       console.log(group_id)
       console.log($('.msg_history').html())
       App.chat.send({ sender_id: sender_id, group_id: group_id, message: message })
+      input_box.val('')
 
-    
+    $( "#send-message-to-group" ).on "click", send_message
+
+    $('#input-message-to-group').keypress (event) ->
+      keycode = if event.keyCode then event.keyCode else event.which
+      if keycode == 13
+        do send_message
