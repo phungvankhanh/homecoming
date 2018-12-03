@@ -18,15 +18,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    Rails.logger.debug("My object: #{user_params}")
     @user = User.find(params[:id])
-    log(user_params)
     if @user.update_attributes(user_params)
-      # Handle a successful update.
+      flash[:success] = "Profile updated"
+      sign_in(@user)
+      redirect_to @user
     else
-      render 'show'
+      render 'edit'
     end
   end
+   def user_params
+    params.require(:user).permit(:nickname, :email, :password,
+                                 :password_confirmation, :picture_path)
+  end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url unless current_user?(@user)
+  end
+
 
   def destroy
   end

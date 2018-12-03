@@ -32,14 +32,22 @@
 
 
             <div class="text-center">
+                <div class="avatar">
                 <% if @user.picture_path == nil %>
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                 <% else %>
-                <img src="<%= @user.picture_path%>" class="avatar img-circle img-thumbnail" alt="avatar">
+               <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                 <% end %>
                 <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload" name="picture_path" id="picture_path"
-                    value="<%= @user.picture_path %>">
+            </div>
+                
+
+                    <%= form_for(@user) do |f| %>
+            <div class="propic-edit">
+                <%= f.file_field :picture_path, accept: "image/jpeg,image/gif,image/png",    id: "upload-pic" %>
+            </div>
+             <%= f.submit "Click Me To Update", class: "btn btn-success" %>
+            <% end %>
             </div>
             </hr><br>
 
@@ -63,16 +71,39 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <div class="col-xs-6">
-                        <label for="email">
-                            <h4>Email: </h4>
-                        </label>
-                        <div>
-                            <%= @user.email %>
-                        </div>
+                        
                         <!-- <input type="email" class="form-control" name="email" id="email" value = "<%= @user.email %>" placeholder="<%= @user.email %>" title="enter your email."> -->
                     </div>
+                    <br>
                     <% if current_user.id == @user.id %>
-                    <form class="form" action="/users" method="post" id="registrationForm">
+                    <div class="container">
+
+                    
+                        <!-- -------0 -->
+                        <div class=" col-sm-4">
+
+                    <%= form_for(@user) do |f| %>
+    <div class="right-block-edit">
+    <h3><%=t("Change Your Info")%></h3>
+    <div class="name-edit">
+      <% if @user.errors[:nickname].length != 0%>
+        <div class="error-messages"><%= @user.errors[:nickname][0] %></div>
+      <% end %>
+      <%= f.label :nickname, t("Registered Name") %>
+      <%= f.text_field :nickname, class: "form-control" %>
+    </div>
+    <div class="email-edit">
+      <% if @user.errors[:email].length != 0%>
+        <div class="error-messages"><%= @user.errors[:email][0] %></div>
+      <% end %>
+      <%= f.label :email, "Registered Email" %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+      <%= f.submit "Click Me To Update", class: "btn btn-success" %>
+    <% end %>
+</div>
+</div>
+                   <!--  <form class="form" action="/users" method="post" id="registrationForm">
                         <div class="form-group">
 
                             <div class="col-xs-6">
@@ -125,7 +156,28 @@
                                     Reset</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
+                    <div class="col-sm-4">
+                   <h3 style="margin-top: 5%">Change Password</h3>
+        <%= form_for(@user) do |f| %>
+            <% if @user.errors[:password].length != 0%>
+                <div class="error-messages"><%= @user.errors[:password][0] %></div>
+            <% end %>
+            <%= f.label :password, "Enter New Password" %>
+            <%= f.password_field :password, class: "form-control" %>
+        
+            <% if @user.errors[:password_confirmation].length != 0%>
+                <div class="error-messages"><%= @user.errors[:password_confirmation][0] %></div>
+            <% end %>
+            <%= f.label :password_confirmation, "Confirm New Password" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+            <p style="margin-bottom: 5%;"></p>
+            <%= f.submit "Change Password", class: "btn btn-warning" %>
+        <% end %>
+
+</div>
+</div>
+
                     <% else %>
 
                     <div class="col-xs-6">
@@ -198,23 +250,23 @@
             <!--/col-9-->
         </div>
         <!--/row-->
+      <script type="text/javascript">
+    function readURL(input){
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
 
-        <script>
-            $(document).ready(function () {
-                var readURL = function (input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            $('.avatar').attr('src', e.target.result);
-                        }
-
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-
-                $(".file-upload").on('change', function () {
-                    readURL(this);
-                });
-            });
-        </script>
+            reader.onload = function(e){
+                $("#avatar")
+                    .attr("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("a.upload-new-pic").on("click",function(e){
+        e.preventDefault();
+        $("#upload-pic:hidden").trigger("click");
+    });
+    $("#upload-pic:hidden").change(function(){
+        readURL(this);
+    });
+</script>
