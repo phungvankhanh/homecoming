@@ -47,18 +47,18 @@
             alt="">
         </div>
         <div>
-        <%= render 'news/index', :newses => @group.news.order("created_at DESC")%>
+          <%= render 'news/index', :newses => @group.news.order("created_at DESC")%>
         </div>
         <div>
-        <%if current_user.id == @group.owner.id%>
-        <br>
-        <h2>New news</h2>
-        <hr>
-        <%= render 'news/new', :news => @news, :group => @group%>
-        <%end%>
+          <%if current_user.id == @group.owner.id%>
+          <br>
+          <h2>New news</h2>
+          <hr>
+          <%= render 'news/new', :news => @news, :group => @group%>
+          <%end%>
         </div>
-        <div> 
-          
+        <div>
+
         </div>
       </div>
 
@@ -83,7 +83,7 @@
               <div class="inbox_msg">
                 <div class="mesgs">
                   <div class="msg_history" id="message-list">
-                  <!-- Content history messages -->
+                    <!-- Content history messages -->
                   </div>
                   <div class="type_msg">
                     <div class="input_msg_write">

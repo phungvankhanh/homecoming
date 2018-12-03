@@ -22,8 +22,12 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find params[:id]
-    @news = News.new
+    if user_signed_in?
+      @group = Group.find params[:id]
+      @news = News.new
+    else
+      redirect_to '/users/sign_in'
+    end
   end
 
   private
