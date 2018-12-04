@@ -22,7 +22,7 @@ $ ->
               <p>#{data.sender.email}</p>
               <div class="received_withd_msg">
                 <p id="vl">#{data.message}</p>
-                <span class="time_date"> 11:01 AM | June 9</span>
+                <span class="time_date">#{data.sender.created_at}</span>
               </div>
             </div>
           </div>

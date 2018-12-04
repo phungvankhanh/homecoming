@@ -33,21 +33,23 @@
 
             <div class="text-center">
                 <div class="avatar">
-                <% if @user.picture_path == nil %>
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                <% else %>
-               <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                <% end %>
-                <h6>Upload a different photo...</h6>
-            </div>
-                
+                    <% if @user.picture_path == nil %>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                        alt="avatar">
+                    <% else %>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                        alt="avatar">
+                    <% end %>
+                    <h6>Upload a different photo...</h6>
+                </div>
 
-                    <%= form_for(@user) do |f| %>
-            <div class="propic-edit">
-                <%= f.file_field :picture_path, accept: "image/jpeg,image/gif,image/png",    id: "upload-pic" %>
-            </div>
-             <%= f.submit "Click Me To Update", class: "btn btn-success" %>
-            <% end %>
+
+                <%= form_for(@user) do |f| %>
+                <div class="propic-edit">
+                    <%= f.file_field :picture_path, accept: "image/jpeg,image/gif,image/png",    id: "upload-pic" %>
+                </div>
+                <%= f.submit "Click Me To Update", class: "btn btn-success" %>
+                <% end %>
             </div>
             </hr><br>
 
@@ -71,39 +73,45 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <div class="col-xs-6">
-                        
+
                         <!-- <input type="email" class="form-control" name="email" id="email" value = "<%= @user.email %>" placeholder="<%= @user.email %>" title="enter your email."> -->
                     </div>
                     <br>
                     <% if current_user.id == @user.id %>
                     <div class="container">
 
-                    
+
                         <!-- -------0 -->
                         <div class=" col-sm-4">
 
-                    <%= form_for(@user) do |f| %>
-    <div class="right-block-edit">
-    <h3><%=t("Change Your Info")%></h3>
-    <div class="name-edit">
-      <% if @user.errors[:nickname].length != 0%>
-        <div class="error-messages"><%= @user.errors[:nickname][0] %></div>
-      <% end %>
-      <%= f.label :nickname, t("Registered Name") %>
-      <%= f.text_field :nickname, class: "form-control" %>
-    </div>
-    <div class="email-edit">
-      <% if @user.errors[:email].length != 0%>
-        <div class="error-messages"><%= @user.errors[:email][0] %></div>
-      <% end %>
-      <%= f.label :email, "Registered Email" %>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-      <%= f.submit "Click Me To Update", class: "btn btn-success" %>
-    <% end %>
-</div>
-</div>
-                   <!--  <form class="form" action="/users" method="post" id="registrationForm">
+                            <%= form_for(@user) do |f| %>
+                            <div class="right-block-edit">
+                                <h3>
+                                    <%=t("Change Your Info")%>
+                                </h3>
+                                <div class="name-edit">
+                                    <% if @user.errors[:nickname].length != 0%>
+                                    <div class="error-messages">
+                                        <%= @user.errors[:nickname][0] %>
+                                    </div>
+                                    <% end %>
+                                    <%= f.label :nickname, t("Registered Name") %>
+                                    <%= f.text_field :nickname, class: "form-control" %>
+                                </div>
+                                <div class="email-edit">
+                                    <% if @user.errors[:email].length != 0%>
+                                    <div class="error-messages">
+                                        <%= @user.errors[:email][0] %>
+                                    </div>
+                                    <% end %>
+                                    <%= f.label :email, "Registered Email" %>
+                                    <%= f.text_field :email, class: "form-control" %>
+                                </div>
+                                <%= f.submit "Click Me To Update", class: "btn btn-success" %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <!--  <form class="form" action="/users" method="post" id="registrationForm">
                         <div class="form-group">
 
                             <div class="col-xs-6">
@@ -157,37 +165,41 @@
                             </div>
                         </div>
                     </form> -->
-                    <div class="col-sm-4">
-                   <h3 style="margin-top: 5%">Change Password</h3>
-        <%= form_for(@user) do |f| %>
-            <% if @user.errors[:password].length != 0%>
-                <div class="error-messages"><%= @user.errors[:password][0] %></div>
-            <% end %>
-            <%= f.label :password, "Enter New Password" %>
-            <%= f.password_field :password, class: "form-control" %>
-        
-            <% if @user.errors[:password_confirmation].length != 0%>
-                <div class="error-messages"><%= @user.errors[:password_confirmation][0] %></div>
-            <% end %>
-            <%= f.label :password_confirmation, "Confirm New Password" %>
-            <%= f.password_field :password_confirmation, class: "form-control" %>
-            <p style="margin-bottom: 5%;"></p>
-            <%= f.submit "Change Password", class: "btn btn-warning" %>
-        <% end %>
+                        <div class="col-sm-4">
+                            <h3 style="margin-top: 5%">Change Password</h3>
+                            <%= form_for(@user) do |f| %>
+                            <% if @user.errors[:password].length != 0%>
+                            <div class="error-messages">
+                                <%= @user.errors[:password][0] %>
+                            </div>
+                            <% end %>
+                            <%= f.label :password, "Enter New Password" %>
+                            <%= f.password_field :password, class: "form-control" %>
 
-</div>
-</div>
+                            <% if @user.errors[:password_confirmation].length != 0%>
+                            <div class="error-messages">
+                                <%= @user.errors[:password_confirmation][0] %>
+                            </div>
+                            <% end %>
+                            <%= f.label :password_confirmation, "Confirm New Password" %>
+                            <%= f.password_field :password_confirmation, class: "form-control" %>
+                            <p style="margin-bottom: 5%;"></p>
+                            <%= f.submit "Change Password", class: "btn btn-warning" %>
+                            <% end %>
+
+                        </div>
+                    </div>
 
                     <% else %>
 
                     <div class="col-xs-6">
-                    <label for="nickname">
-                        <h4>Nickname: </h4>
-                    </label>
-                    <div>
-                        <%= @user.nickname %>
+                        <label for="nickname">
+                            <h4>Nickname: </h4>
+                        </label>
+                        <div>
+                            <%= @user.nickname %>
+                        </div>
                     </div>
-                </div> 
                     <% end %>
                     <hr>
 
@@ -250,23 +262,130 @@
             <!--/col-9-->
         </div>
         <!--/row-->
-      <script type="text/javascript">
-    function readURL(input){
-        if(input.files && input.files[0]){
-            var reader = new FileReader();
 
-            reader.onload = function(e){
-                $("#avatar")
-                    .attr("src", e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("a.upload-new-pic").on("click",function(e){
-        e.preventDefault();
-        $("#upload-pic:hidden").trigger("click");
-    });
-    $("#upload-pic:hidden").change(function(){
-        readURL(this);
-    });
-</script>
+        <!-- Owning Groups -->
+        <div class="row">
+            <div>
+                <h3 class="page-header">Owning Groups</h3>
+            </div>
+            <% if @user.groups.count != 0 %>
+            <% @user.groups.each do |group| %>
+            <div class="row">
+                <div class="well" style="background-color:#ffffff">
+                    <div class="media" style="height: 170px">
+                        <div class="pull-left">
+                            <% if @user.picture_path != nil %>
+                            <img class="media-object" style="width: auto; height: 150px" src=" <%=@user.picture_path%>"
+                                alt="have image">
+                            <% else %>
+                            <img class="media-object" style="width: auto; height: 150px" src="https://us.123rf.com/450wm/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg?ver=6">
+                            <% end %>
+                        </div>
+
+                        <div class="media-body" style="width:900px">
+                            <h3 class="media-heading">
+                                <p>
+                                    <%= link_to group.name, group %>
+                                </p>
+                            </h3>
+
+                            <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                <p>
+                                    <%= group.description.html_safe %>
+                                </p>
+                            </div>
+
+                            <ul class="list-inline list-unstyled text-right">
+                                <li><span><i class="glyphicon glyphicon-calendar"></i>
+                                        <%= group.created_at%> </span></li>
+                                <span>
+                                    <p>Number of members:
+                                        <%= group.members.count %>
+                                    </p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%end%>
+            <% else %>
+            <div class="offset-4 col-8">
+                <p><strong> There is no groups. </strong></p>
+            </div>
+            <% end %>
+            <hr>
+        </div>
+
+        <!-- Joining Groups -->
+        <div class="row">
+            <div>
+                <h3 class="page-header">Joining Groups</h3>
+            </div>
+            <% if @user.joining_groups.count != 0 %>
+            <% @user.joining_groups.each do |group| %>
+            <div class="row">
+                <div class="well" style="background-color:#ffffff">
+                    <div class="media" style="height: 170px">
+                        <div class="pull-left">
+                            <% if @user.picture_path != nil %>
+                            <img class="media-object" style="width: auto; height: 150px" src=" <%=@user.picture_path%>"
+                                alt="have image">
+                            <% else %>
+                            <img class="media-object" style="width: auto; height: 150px" src="https://us.123rf.com/450wm/apoev/apoev1709/apoev170900088/85467744-default-avatar-anime-girl-profile-icon-grey-photo-manga-placeholder.jpg?ver=6">
+                            <% end %>
+                        </div>
+
+                        <div class="media-body" style="width:900px">
+                            <h3 class="media-heading">
+                                <p>
+                                    <%= link_to group.name, group %>
+                                </p>
+                            </h3>
+
+                            <div style="height:60px;line-height:20px; /* Height / no. of lines to display */overflow:hidden; margin-bottom:30px">
+                                <p>
+                                    <%= group.description.html_safe %>
+                                </p>
+                            </div>
+
+                            <ul class="list-inline list-unstyled text-right">
+                                <li><span><i class="glyphicon glyphicon-calendar"></i>
+                                        <%= group.created_at%> </span></li>
+                                <span>
+                                    <p>Number of members:
+                                        <%= group.members.count %>
+                                    </p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%end%>
+            <% else %>
+            <div class="offset-4 col-8">
+                <p><strong> There is no groups. </strong></p>
+            </div>
+            <% end %>
+            <hr>
+        </div>
+
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $("#avatar")
+                            .attr("src", e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("a.upload-new-pic").on("click", function (e) {
+                e.preventDefault();
+                $("#upload-pic:hidden").trigger("click");
+            });
+            $("#upload-pic:hidden").change(function () {
+                readURL(this);
+            });
+        </script>
