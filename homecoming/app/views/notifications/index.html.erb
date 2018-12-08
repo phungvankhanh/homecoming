@@ -1,6 +1,12 @@
 
+<% if @notifications.count == 0 %>
+  <%= link_to '#' do %>
+    <p>No new comment</p>
+  <% end %>
+<% else %>
 <ul id="notificationList">
   <%= render @notifications %>
 </ul>
+<% end %>
 
 

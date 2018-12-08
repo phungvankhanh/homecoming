@@ -14,6 +14,8 @@ class Comment < ApplicationRecord
 
     private
     def notify
-      Notification.create(event: "New Notification Comment review (#{self.content})")
+        review = Review.find_by(id: self.review_id)
+        destination = Destination.find_by(id: review.destination_id)
+        Notification.create(event: "New comment review on post (#{destination.name})", comment_id: self.id, review_id: self.review_id, destination_id: review.destination_id)
     end
 end
